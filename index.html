@@ -1,0 +1,3297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ankita Tomar — Marketing & Content Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #FAF6EF;
+      --deep: #1C0A06;
+      --terracotta: #C4614A;
+      --blush: #E8C4B0;
+      --sage: #8BA58A;
+      --warm-mid: #8C5E4A;
+      --f4: #F4EDE3;
+      --border: rgba(28,10,6,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--deep);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── PAGE ROUTER ── */
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ── NAV (HOME) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.3rem 4rem;
+      background: rgba(250,246,239,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--deep); text-decoration: none; cursor:pointer;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--deep);
+      text-decoration: none; opacity: 0.55; transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      font-size: 0.7rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--cream);
+      background: var(--terracotta);
+      padding: 0.6rem 1.4rem; border-radius: 2px;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--deep); }
+
+    /* ── DETAIL NAV (for inner pages) ── */
+    .detail-nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(250,246,239,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--deep); text-decoration: none; cursor: pointer;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--terracotta); cursor: pointer; text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .back-btn::before { content: '←'; font-size: 0.85rem; }
+    .back-btn:hover { gap: 0.85rem; }
+    .detail-nav-links { display: flex; gap: 2rem; list-style: none; }
+    .detail-nav-links a {
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--deep); text-decoration: none; opacity: 0.45; transition: opacity 0.2s;
+    }
+    .detail-nav-links a:hover { opacity: 1; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 4rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute; bottom: -3rem; left: -2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(9rem, 20vw, 24rem);
+      font-weight: 300;
+      color: var(--blush); opacity: 0.28;
+      line-height: 1; pointer-events: none;
+      user-select: none; white-space: nowrap;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 860px; }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terracotta);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-label::before {
+      content: ''; width: 2.5rem; height: 1px; background: var(--terracotta);
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.8rem, 9vw, 8rem);
+      font-weight: 300; line-height: 1.0;
+      animation: fadeUp 0.85s ease 0.1s both;
+    }
+    .hero-name em { font-style: italic; color: var(--terracotta); }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.75rem);
+      font-style: italic; font-weight: 300;
+      opacity: 0.6; margin-top: 1.5rem;
+      max-width: 520px; line-height: 1.55;
+      animation: fadeUp 0.85s ease 0.2s both;
+    }
+    .hero-actions {
+      display: flex; gap: 1.2rem; margin-top: 3rem;
+      animation: fadeUp 0.85s ease 0.3s both;
+    }
+    .btn-primary {
+      background: var(--terracotta); color: var(--cream);
+      padding: 0.85rem 2rem; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--deep); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(28,10,6,0.35); color: var(--deep);
+      padding: 0.85rem 2rem; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { background: var(--deep); color: var(--cream); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 3.5rem; margin-top: 5rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border);
+      animation: fadeUp 0.85s ease 0.4s both;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 600;
+      line-height: 1; color: var(--terracotta);
+    }
+    .stat-label {
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; opacity: 0.45; margin-top: 0.35rem;
+    }
+    .hero-side {
+      position: absolute; right: 4rem; bottom: 5rem;
+      writing-mode: vertical-rl;
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; opacity: 0.35;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-side::after {
+      content: ''; width: 1px; height: 4rem;
+      background: var(--deep); opacity: 0.4;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 4rem; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-size: 0.66rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--terracotta);
+      margin-bottom: 1.4rem;
+    }
+    .section-label::before {
+      content: ''; width: 2rem; height: 1px; background: var(--terracotta);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 300; line-height: 1.15; max-width: 680px;
+    }
+    .section-title em { font-style: italic; color: var(--terracotta); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--deep); color: var(--cream); }
+    #about .section-label { color: var(--blush); }
+    #about .section-label::before { background: var(--blush); }
+    .about-grid {
+      display: grid; grid-template-columns: 312px 1.1fr 0.9fr;
+      gap: 4rem; margin-top: 4rem; align-items: start;
+    }
+    /* Portrait column */
+    .about-portrait-wrap {
+      width: 100%;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+    .about-portrait-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative; /* natural flow — height follows crop ratio */
+    }
+    .about-portrait-ph {
+      aspect-ratio: 3/4;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.6rem; width: 100%;
+    }
+    .about-bio { font-size: 1rem; line-height: 1.9; opacity: 0.75; margin-top: 2rem; }
+    .about-bio p + p { margin-top: 1.2rem; }
+    .about-detail {
+      font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; opacity: 0.4; margin-top: 2rem;
+    }
+    .about-detail span { color: var(--blush); opacity: 1; }
+    .sub-label {
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; opacity: 0.35; margin-bottom: 1.4rem;
+    }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .skill-tag {
+      border: 1px solid rgba(255,255,255,0.18); color: var(--cream);
+      padding: 0.42rem 0.95rem; font-size: 0.68rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 2px; transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .skill-tag:hover { background: var(--terracotta); border-color: var(--terracotta); }
+    .edu-block { margin-top: 3rem; }
+    .edu-item { padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .edu-item:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 300; font-style: italic;
+    }
+    .edu-school { font-size: 0.72rem; opacity: 0.5; margin-top: 0.3rem; }
+    .edu-year { font-size: 0.65rem; color: var(--blush); letter-spacing: 0.08em; margin-top: 0.2rem; }
+
+    /* ── SERVICES ── */
+    .services-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: end; margin-bottom: 4rem;
+    }
+    .services-desc { font-size: 1rem; line-height: 1.8; opacity: 0.6; }
+    .services-list { display: flex; flex-direction: column; }
+    .service-row {
+      display: flex; align-items: baseline; gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-row:first-child { border-top: 1px solid var(--border); }
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+      color: var(--blush); min-width: 2rem; line-height: 1;
+      flex-shrink: 0;
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; line-height: 1.2;
+      flex: 1;
+    }
+    .service-tag {
+      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--terracotta); opacity: 0.7; white-space: nowrap;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--f4); }
+    .exp-grid { margin-top: 4rem; }
+    .exp-item {
+      display: grid; grid-template-columns: 200px 1fr auto;
+      gap: 3rem; padding: 2.8rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-period {
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terracotta);
+      padding-top: 0.3rem;
+    }
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem; font-weight: 300; font-style: italic;
+    }
+    .exp-company {
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem;
+    }
+    .exp-location { font-size: 0.7rem; opacity: 0.45; margin-top: 0.2rem; }
+    .exp-tag {
+      display: inline-block; margin-top: 1rem;
+      padding: 0.28rem 0.9rem; font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      border: 1px solid var(--terracotta); color: var(--terracotta);
+      border-radius: 20px;
+    }
+    .exp-actions { display: flex; align-items: center; }
+    .learn-more-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--terracotta); cursor: pointer;
+      border: 1px solid var(--terracotta);
+      padding: 0.6rem 1.3rem; border-radius: 2px;
+      text-decoration: none; background: transparent;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .learn-more-btn::after { content: '→'; }
+    .learn-more-btn:hover { background: var(--terracotta); color: var(--cream); transform: translateX(3px); }
+
+    /* ── PROJECTS ── */
+    .projects-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 3.5rem;
+    }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--border);
+    }
+    .project-card {
+      background: var(--cream);
+      min-height: 280px; position: relative;
+      overflow: hidden; cursor: pointer;
+    }
+    .project-card:nth-child(1) { grid-column: span 2; min-height: 380px; }
+    .project-card:nth-child(4) { grid-column: span 2; min-height: 320px; }
+    .project-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.65s ease;
+    }
+    .project-card:hover .project-bg { transform: scale(1.07); }
+    /* cover images from Unsplash */
+    .p1 { background-image: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=900&auto=format&fit=crop'), linear-gradient(140deg, #D4A898 0%, #C4614A 100%); }
+    .p2 { background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=700&auto=format&fit=crop'), linear-gradient(140deg, #8BA58A 0%, #5A7A5A 100%); }
+    .p3 { background-image: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=700&auto=format&fit=crop'), linear-gradient(140deg, #C4614A 0%, #8C3A22 100%); }
+    .p4 { background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&auto=format&fit=crop'), linear-gradient(140deg, #2C1A10 0%, #5C3A20 100%); }
+    .p5 { background-image: url('https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=700&auto=format&fit=crop'), linear-gradient(140deg, #8C5E4A 0%, #AC7E6A 100%); }
+    .p6 { background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=700&auto=format&fit=crop'), linear-gradient(140deg, #B8A890 0%, #C8B8A0 100%); }
+    .p7 { background-image: url('https://images.unsplash.com/photo-1556656793-08538906a9f8?w=900&auto=format&fit=crop'), linear-gradient(140deg, #E8C4B0 0%, #D4A898 100%); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,10,6,0.92) 40%, transparent 75%);
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem; opacity: 0;
+      transform: translateY(10px); transition: opacity 0.3s, transform 0.3s;
+    }
+    .project-card:hover .project-info { opacity: 1; transform: translateY(0); }
+    .project-cat {
+      font-size: 0.62rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--blush); margin-bottom: 0.4rem;
+    }
+    .project-name-hover {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--cream); margin-bottom: 1.1rem;
+    }
+    .project-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem; transition: opacity 0.3s;
+    }
+    .project-card:hover .project-label { opacity: 0; }
+    .project-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem; opacity: 0.2; line-height: 1; color: var(--cream);
+    }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; margin-top: 0.2rem; color: var(--cream);
+    }
+    /* always-visible title when no image loaded */
+    .project-label .project-num,
+    .project-label .project-title { color: var(--deep); }
+    .project-bg { background-blend-mode: multiply; }
+    .project-date {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cream); background: rgba(28,10,6,0.45);
+      backdrop-filter: blur(6px);
+      padding: 0.32rem 0.75rem; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.18);
+      z-index: 3; transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .project-card:hover .project-date { opacity: 0; }
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--cream); border: 1px solid rgba(255,255,255,0.45);
+      padding: 0.55rem 1.2rem; border-radius: 2px;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .explore-btn::after { content: '→'; }
+    .explore-btn:hover { background: var(--terracotta); border-color: var(--terracotta); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--terracotta);
+      color: var(--cream); text-align: center;
+    }
+    #contact .section-label { color: rgba(255,255,255,0.6); justify-content: center; }
+    #contact .section-label::before { background: rgba(255,255,255,0.6); }
+    #contact .section-title em { color: var(--cream); opacity: 1; }
+    #contact .section-title {
+      max-width: 100%; font-size: clamp(2.8rem, 6vw, 5rem);
+      color: var(--cream); margin: 0 auto;
+    }
+    .contact-sub {
+      font-size: 1.05rem; opacity: 0.72;
+      max-width: 460px; margin: 1.5rem auto 3rem; line-height: 1.75;
+    }
+    .btn-white {
+      background: var(--cream); color: var(--terracotta);
+      padding: 1rem 2.5rem; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px; font-weight: 500;
+      display: inline-block; transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-white:hover { background: var(--deep); color: var(--cream); transform: translateY(-2px); }
+    .contact-links {
+      display: flex; justify-content: center;
+      gap: 2.5rem; flex-wrap: wrap;
+      margin-top: 3rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.22);
+    }
+    .contact-link {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--cream);
+      text-decoration: none; opacity: 0.55; transition: opacity 0.2s;
+    }
+    .contact-link:hover { opacity: 1; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep); color: var(--cream);
+      padding: 2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; }
+    .footer-copy { font-size: 0.65rem; opacity: 0.3; letter-spacing: 0.08em; }
+
+    /* ── DETAIL PAGE SHARED STYLES ── */
+    .detail-hero {
+      position: relative; height: 70vh; min-height: 480px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .detail-hero-img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.03);
+      transition: transform 0.8s ease;
+    }
+    .page.active .detail-hero-img { transform: scale(1); }
+    .detail-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,10,6,0.88) 45%, rgba(28,10,6,0.2) 100%);
+    }
+    .detail-hero-content {
+      position: relative; z-index: 2;
+      padding: 4rem; max-width: 900px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .detail-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blush); margin-bottom: 1.2rem;
+    }
+    .detail-tag::before { content: ''; width: 1.8rem; height: 1px; background: var(--blush); }
+    .detail-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      font-weight: 300; line-height: 1.1; color: var(--cream);
+    }
+    .detail-title em { font-style: italic; color: var(--blush); }
+    .detail-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-style: italic;
+      color: var(--cream); opacity: 0.65; margin-top: 0.8rem;
+    }
+
+    /* Detail meta bar */
+    .detail-meta {
+      display: flex; gap: 0; background: var(--deep);
+    }
+    .detail-meta-item {
+      flex: 1; padding: 1.8rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .detail-meta-item:last-child { border-right: none; }
+    .detail-meta-label {
+      font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--blush); opacity: 0.65;
+      margin-bottom: 0.4rem;
+    }
+    .detail-meta-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 300; color: var(--cream);
+    }
+
+    /* Detail sections */
+    .detail-section { padding: 5rem 4rem; }
+    .detail-section + .detail-section { padding-top: 0; }
+    .detail-section-alt { background: var(--f4); padding: 5rem 4rem; }
+    .detail-section-dark { background: var(--deep); color: var(--cream); padding: 5rem 4rem; }
+
+    .detail-body {
+      max-width: 760px;
+      font-size: 1.05rem; line-height: 1.9; opacity: 0.75; margin-top: 1.8rem;
+    }
+    .detail-body p + p { margin-top: 1.2rem; }
+
+    .detail-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem;
+    }
+    .detail-grid-3 {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem;
+    }
+
+    /* Responsibility cards */
+    .resp-card {
+      border: 1px solid var(--border); padding: 2rem;
+      border-radius: 2px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .resp-card:hover { border-color: var(--terracotta); transform: translateY(-3px); }
+    .resp-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem; color: var(--blush); line-height: 1;
+    }
+    .resp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600; margin-top: 0.8rem; margin-bottom: 0.6rem;
+    }
+    .resp-desc { font-size: 0.88rem; line-height: 1.75; opacity: 0.65; }
+
+    /* Achievement list */
+    .achievement-list { margin-top: 2rem; }
+    .achievement-item {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      padding: 1.4rem 0; border-bottom: 1px solid var(--border);
+    }
+    .achievement-item:first-child { border-top: 1px solid var(--border); }
+    .achievement-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--terracotta); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cream); font-size: 1rem; margin-top: 0.1rem;
+    }
+    .achievement-text { font-size: 0.95rem; line-height: 1.7; opacity: 0.75; }
+    .achievement-text strong { opacity: 1; font-weight: 500; color: var(--terracotta); }
+
+    /* Skills chips */
+    .skills-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .skill-chip {
+      padding: 0.45rem 1rem; font-size: 0.68rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 1px solid var(--border); border-radius: 20px;
+      background: var(--cream); color: var(--deep);
+      transition: background 0.2s, color 0.2s;
+    }
+    .skill-chip:hover { background: var(--terracotta); color: var(--cream); border-color: var(--terracotta); }
+
+    /* Project image gallery */
+    .proj-gallery {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5px; background: var(--border); margin-top: 3rem;
+    }
+    .proj-gallery img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      display: block; background: var(--blush);
+      transition: transform 0.45s ease; overflow: hidden;
+    }
+    .proj-gallery-item { overflow: hidden; background: var(--blush); }
+    .proj-gallery-item:hover img { transform: scale(1.04); }
+    .proj-gallery-item.wide { grid-column: span 2; }
+    .proj-gallery-item.wide img { aspect-ratio: 16/7; }
+
+    /* Project highlight stats */
+    .proj-stats {
+      display: flex; gap: 0;
+      border: 1px solid var(--border); margin-top: 3rem;
+    }
+    .proj-stat {
+      flex: 1; padding: 2rem; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .proj-stat:last-child { border-right: none; }
+    .proj-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 600; color: var(--terracotta); line-height: 1;
+    }
+    .proj-stat-label {
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; opacity: 0.5; margin-top: 0.4rem;
+    }
+
+    /* Detail CTA */
+    .detail-cta {
+      background: var(--terracotta); color: var(--cream);
+      padding: 5rem 4rem; text-align: center;
+    }
+    .detail-cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .detail-cta-sub { opacity: 0.75; font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .detail-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white-outline {
+      border: 1px solid rgba(255,255,255,0.5); color: var(--cream);
+      padding: 0.85rem 2rem; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer; background: transparent;
+    }
+    .btn-white-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .detail-nav { padding: 1.2rem 2rem; }
+      .detail-nav-links { display: none; }
+      section { padding: 5rem 2rem; }
+      #hero { padding: 7rem 2rem 4rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .service-row { flex-wrap: wrap; gap: 0.5rem 2rem; }
+      .service-tag { width: 100%; padding-left: calc(2rem + 2rem); }
+      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .exp-actions { margin-top: 1rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:nth-child(1),
+      .project-card:nth-child(4) { grid-column: span 1; min-height: 260px; }
+      .hero-side { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .projects-header { flex-direction: column; gap: 1rem; }
+      footer { flex-direction: column; gap: 0.7rem; text-align: center; }
+      .detail-hero-content { padding: 2.5rem 2rem; }
+      .detail-meta { flex-direction: column; }
+      .detail-meta-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .detail-section { padding: 4rem 2rem; }
+      .detail-section-alt { padding: 4rem 2rem; }
+      .detail-section-dark { padding: 4rem 2rem; }
+      .detail-grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .detail-grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
+      .proj-gallery { grid-template-columns: 1fr; }
+      .proj-gallery-item.wide { grid-column: span 1; }
+      .proj-gallery-item.wide img { aspect-ratio: 4/3; }
+      .proj-stats { flex-direction: column; }
+      .proj-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .detail-cta { padding: 4rem 2rem; }
+    }
+    @media (max-width: 520px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:nth-child(1),
+      .project-card:nth-child(4) { grid-column: span 1; min-height: 220px; }
+    }
+
+
+    /* ── PDF SLIDER ── */
+    .pdf-zone { margin-top: 2.5rem; }
+    .pdf-slider-wrap { position: relative; }
+    .pdf-track {
+      width: 100%; background: #f0ece5;
+      border: 1px solid var(--border); border-radius: 2px;
+      overflow: hidden; min-height: 200px;
+    }
+    .pdf-track canvas {
+      width: 100%; height: auto; display: block;
+    }
+    .pdf-track .pdf-page { display: none; }
+    .pdf-track .pdf-page.active { display: block; }
+    .pdf-controls {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 1.2rem; justify-content: center;
+    }
+    .pdf-nav {
+      background: var(--deep); color: var(--cream);
+      border: none; cursor: pointer;
+      width: 38px; height: 38px; border-radius: 50%;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .pdf-nav:hover { background: var(--terracotta); transform: scale(1.08); }
+    .pdf-nav:disabled { opacity: 0.3; cursor: default; transform: none; }
+    .pdf-counter {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; opacity: 0.45; min-width: 56px; text-align: center;
+    }
+    .pdf-loading {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.8rem; padding: 3rem; font-size: 0.8rem;
+      opacity: 0.5; letter-spacing: 0.08em;
+    }
+    .pdf-spinner {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid var(--border);
+      border-top-color: var(--terracotta);
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── RESPONSIVE ADDITIONS ── */
+    @media (max-width: 960px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-portrait-wrap { max-width: 264px; aspect-ratio: 1/1; }
+    }
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(28,10,6,0.55);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
+    }
+    .popup-overlay.open { opacity: 1; pointer-events: all; }
+    .popup-box {
+      background: var(--cream); width: 100%; max-width: 520px;
+      padding: 3rem 3rem 2.5rem;
+      border-radius: 3px;
+      transform: translateY(24px);
+      transition: transform 0.35s ease;
+      position: relative;
+    }
+    .popup-overlay.open .popup-box { transform: translateY(0); }
+    .popup-close {
+      position: absolute; top: 1.2rem; right: 1.4rem;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.4rem; color: var(--deep); opacity: 0.35;
+      line-height: 1; padding: 0.2rem 0.4rem;
+      transition: opacity 0.2s;
+    }
+    .popup-close:hover { opacity: 1; }
+    .popup-label {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terracotta);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .popup-label::before { content:''; width:1.5rem; height:1px; background:var(--terracotta); }
+    .popup-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; line-height: 1.2;
+      margin-bottom: 2rem; color: var(--deep);
+    }
+    .popup-title em { font-style: italic; color: var(--terracotta); }
+    .form-group { margin-bottom: 1.3rem; }
+    .form-label {
+      display: block; font-size: 0.65rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--deep); opacity: 0.5;
+      margin-bottom: 0.5rem;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%; background: var(--f4);
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 300; color: var(--deep);
+      outline: none; transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--terracotta);
+    }
+    .form-textarea {
+      resize: vertical; min-height: 110px; max-height: 200px;
+      line-height: 1.6;
+    }
+    .form-char-count {
+      font-size: 0.62rem; opacity: 0.35; text-align: right;
+      margin-top: 0.3rem; letter-spacing: 0.05em;
+    }
+    .form-char-count.over { color: #c0392b; opacity: 1; }
+    .form-submit {
+      width: 100%; background: var(--terracotta); color: var(--cream);
+      border: none; cursor: pointer;
+      padding: 0.95rem 2rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      border-radius: 2px; margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--deep); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-success {
+      text-align: center; padding: 1.5rem 0;
+      display: none;
+    }
+    .form-success-icon {
+      font-size: 2.5rem; margin-bottom: 1rem;
+    }
+    .form-success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 300; margin-bottom: 0.6rem;
+    }
+    .form-success-sub { font-size: 0.9rem; opacity: 0.55; line-height: 1.6; }
+    @media (max-width: 520px) {
+      .popup-box { padding: 2rem 1.5rem; }
+    }
+
+    /* ── CROP MODAL ── */
+    #cropModal {
+      position: fixed; inset: 0; z-index: 10000;
+      background: rgba(16,5,2,0.94);
+      display: none;
+      flex-direction: column; align-items: center;
+      justify-content: center; gap: 1.2rem;
+      padding: 1.5rem;
+    }
+    .crop-hint {
+      font-size: 0.62rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--blush);
+      opacity: 0.65; text-align: center;
+    }
+    .crop-canvas-wrap { position: relative; line-height: 0; box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
+    #cropCanvas  { display: block; max-width: 85vw; max-height: 66vh; }
+    #cropOverlay { position: absolute; inset: 0; display: block; }
+    .crop-actions { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .crop-confirm {
+      background: var(--terracotta); color: var(--cream); border: none; cursor: pointer;
+      padding: 0.8rem 2.2rem; border-radius: 2px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .crop-confirm:hover { background: var(--deep); transform: translateY(-1px); }
+    .crop-cancel {
+      background: transparent; cursor: pointer; border: 1px solid rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.5); padding: 0.8rem 1.6rem; border-radius: 2px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .crop-cancel:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.8); }
+    .crop-size-label {
+      font-size: 0.58rem; letter-spacing: 0.1em; min-width: 110px;
+      text-align: center; color: rgba(255,255,255,0.28);
+    }
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 0.35rem; flex-direction: column; gap: 5px; z-index: 102;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--deep);
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE OVERRIDES ── */
+    @media (max-width: 960px) {
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none !important;
+        position: fixed; inset: 0;
+        background: var(--cream); flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 2.5rem; z-index: 101;
+        animation: none;
+      }
+      .nav-links.mobile-open { display: flex !important; }
+      .nav-links.mobile-open a {
+        font-size: 1.1rem; letter-spacing: 0.08em;
+        opacity: 1; text-transform: uppercase;
+      }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-portrait-wrap { max-width: 264px; aspect-ratio: 1/1; }
+      .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .exp-actions { margin-top: 1rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:nth-child(1),
+      .project-card:nth-child(4) { grid-column: span 1; min-height: 260px; }
+      .hero-side { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .projects-header { flex-direction: column; gap: 1rem; }
+      footer { flex-direction: column; gap: 0.7rem; text-align: center; }
+      .detail-hero-content { padding: 2.5rem 2rem; }
+      .detail-meta { flex-direction: column; }
+      .detail-meta-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .detail-section { padding: 4rem 2rem; }
+      .detail-section-alt { padding: 4rem 2rem; }
+      .detail-section-dark { padding: 4rem 2rem; }
+      .detail-grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+      .detail-grid-3 { grid-template-columns: 1fr; gap: 1.5rem; }
+      .proj-gallery { grid-template-columns: 1fr; }
+      .proj-gallery-item.wide { grid-column: span 1; }
+      .proj-gallery-item.wide img { aspect-ratio: 4/3; }
+      .proj-stats { flex-direction: column; }
+      .proj-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .detail-cta { padding: 4rem 2rem; }
+      .detail-cta-btns { flex-direction: column; align-items: center; }
+      .detail-nav { padding: 1.2rem 2rem; }
+      .detail-nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-tag { display: none; }
+      .hero-stats { gap: 2rem 3rem; }
+    }
+    @media (max-width: 520px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:nth-child(1),
+      .project-card:nth-child(4) { grid-column: span 1; min-height: 220px; }
+      nav { padding: 1.1rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 6rem 1.5rem 3.5rem; }
+      .hero-name { font-size: clamp(2.8rem, 12vw, 5rem); }
+      .hero-stats { gap: 1.5rem; }
+      .stat-num { font-size: 2.4rem; }
+      .exp-item { padding: 2rem 0; }
+      footer { padding: 1.5rem; }
+      .detail-hero { min-height: 380px; }
+      .detail-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+    }
+
+    /* ── SECRET UPLOAD MODE ── */
+    body.upload-mode .uploadable {
+      outline: 2px dashed var(--terracotta);
+      outline-offset: 2px;
+      cursor: pointer !important;
+      position: relative;
+    }
+    body.upload-mode .uploadable::after {
+      content: '📷';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.6rem;
+      z-index: 60;
+      pointer-events: none;
+      background: rgba(250,246,239,0.88);
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    body.upload-mode .about-portrait-wrap::after { content: '📷'; }
+    body.upload-mode .upload-mode-banner {
+      display: flex !important;
+    }
+    /* Show PDF zones in upload mode so upload button is accessible */
+    body.upload-mode [id^="pdf-section-"] { display: block !important; }
+    body.upload-mode [id^="pdf-section-"] .pdf-upload-zone { display: block !important; }
+    /* Hide gallery images (not the section) when PDF has been uploaded */
+    [data-gallery-for].gallery-replaced .proj-gallery { display: none !important; }
+    /* Upload trigger buttons (visible only in upload mode) */
+    .upload-trigger-btn {
+      display: none; position: absolute; z-index: 60;
+      bottom: 1.4rem; left: 50%; transform: translateX(-50%);
+      background: rgba(196,97,74,0.92); color: var(--cream);
+      border: none; cursor: pointer; padding: 0.55rem 1.3rem;
+      border-radius: 20px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+      white-space: nowrap; pointer-events: all;
+    }
+    body.upload-mode .upload-trigger-btn { display: block; }
+    /* PDF upload zone (visible only in upload mode) */
+    .pdf-upload-zone {
+      display: none; padding: 2rem;
+      border: 2px dashed var(--border); border-radius: 2px;
+      text-align: center; margin-top: 1.5rem;
+    }
+    body.upload-mode .pdf-upload-zone { display: block; }
+    .pdf-upload-zone .pdf-upload-btn {
+      background: var(--terracotta); color: var(--cream);
+      border: none; cursor: pointer; padding: 0.7rem 1.8rem;
+      border-radius: 2px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .pdf-upload-zone .pdf-upload-btn:hover { background: var(--deep); }
+    .upload-mode-banner {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+      background: var(--terracotta); color: var(--cream);
+      padding: 0.7rem 2rem; font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      align-items: center; justify-content: space-between;
+    }
+    .upload-mode-banner button {
+      background: var(--cream); color: var(--terracotta);
+      border: none; cursor: pointer; padding: 0.4rem 1rem;
+      border-radius: 2px; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <nav>
+    <a href="#" class="nav-logo" onclick="showPage('page-home'); return false;">Ankita Tomar</a>
+
+  </nav>
+
+  <section id="hero">
+
+    <div class="hero-content">
+      <div class="hero-label">Marketing &amp; Content Professional</div>
+      <h1 class="hero-name">
+        Crafting stories<br>
+        that <em>captivate.</em>
+      </h1>
+      <p class="hero-tagline">
+        I blend logic and emotion into a magical brew —<br>
+        because great marketing is as much art as science.
+      </p>
+
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">8</div>
+          <div class="stat-label">Services Offered</div>
+        </div>
+        <div>
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">Industries Served</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-side">Gwalior, India</div>
+  </section>
+
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <div class="about-grid">
+      <!-- Portrait -->
+      <div class="about-portrait-wrap uploadable" onclick="handleUploadClick(event,'about_portrait')">
+        <img class="about-portrait-img" id="about-portrait-img" src="" alt="Ankita Tomar" style="display:none">
+        <div class="about-portrait-ph" id="about-portrait-ph"></div>
+      </div>
+      <div>
+        <h2 class="section-title">Hello! I'm <em>Ankita Tomar.</em></h2>
+        <div class="about-bio">
+          <p>I'm a dynamic Marketing and Content professional with over 3 years of experience spanning luxury wedding media, retail electronics, B2B energy and inspection services, event management, and e-commerce.</p>
+          <p>Currently, I serve as Communications &amp; Marketing Executive at CELEX Ensemble, a luxury wedding media agency in the United Kingdom — where I drive and execute along with my team on content strategy, B2B newsletters, LinkedIn marketing, and multi-platform campaigns.</p>
+          <p>Hailing from Gwalior, India, with stints across the GCC, I bring a global perspective paired with sharp local intuitions. My academic foundation is a Master's in Global Business with a specialisation in Global Marketing Management from SP Jain School of Global Management, Dubai.</p>
+          <p>What makes working with me fun and effective is my vibrant personality, forward-thinking attitude, and dedication to fostering collaborative environments that inspire results.</p>
+        </div>
+        <div class="about-detail" style="margin-top:2rem;">
+          Currently in <span>Gwalior, India</span> &nbsp;·&nbsp; Open for <span>Delhi NCR, Mumbai, Bangalore, Dubai</span>
+        </div>
+      </div>
+      <div>
+        <div class="sub-label">Skills &amp; Tools</div>
+        <div class="skills-grid">
+          <span class="skill-tag">Content Creation</span>
+          <span class="skill-tag">Graphic Design</span>
+          <span class="skill-tag">Social Media</span>
+          <span class="skill-tag">Performance Marketing</span>
+          <span class="skill-tag">Influencer Marketing</span>
+          <span class="skill-tag">Email Marketing</span>
+          <span class="skill-tag">Project Management</span>
+          <span class="skill-tag">Public Speaking</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">WordPress</span>
+          <span class="skill-tag">Website Design</span>
+        </div>
+        <div class="edu-block">
+          <div class="sub-label">Education</div>
+          <div class="edu-item">
+            <div class="edu-degree">Master's in Global Business · Global Marketing Management</div>
+            <div class="edu-school">SP Jain School of Global Management, Dubai, UAE</div>
+            <div class="edu-year">Jun 2021 – Mar 2023</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Engineering · Automobile</div>
+            <div class="edu-school">Rustamji Institute of Technology, Gwalior, India</div>
+            <div class="edu-year">Jul 2015 – May 2019</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="experience">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">The experiences that <em>shaped me.</em></h2>
+    <div class="exp-grid">
+
+      <div class="exp-item reveal">
+        <div class="exp-period">May 2025 – Present</div>
+        <div>
+          <div class="exp-role">Communications &amp; Marketing Executive</div>
+          <div class="exp-company">CELEX Ensemble</div>
+          <div class="exp-location">United Kingdom</div>
+          <span class="exp-tag">Current Role</span>
+        </div>
+        <div class="exp-actions">
+          <span class="learn-more-btn" onclick="showPage('page-exp-celex')">Learn More</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Jan 2025 – Mar 2026</div>
+        <div>
+          <div class="exp-role">Digital Marketing Specialist</div>
+          <div class="exp-company">Petrozone International</div>
+          <div class="exp-location">Saudi Arabia</div>
+        </div>
+        <div class="exp-actions">
+          <span class="learn-more-btn" onclick="showPage('page-exp-petrozone')">Learn More</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Jul – Nov 2022</div>
+        <div>
+          <div class="exp-role">Marketing Internship</div>
+          <div class="exp-company">Sharaf DG LLC</div>
+          <div class="exp-location">Dubai, UAE</div>
+        </div>
+        <div class="exp-actions">
+          <span class="learn-more-btn" onclick="showPage('page-exp-sharaf')">Learn More</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Sep 2020 – Jun 2021</div>
+        <div>
+          <div class="exp-role">Project Manager &amp; Content Writer</div>
+          <div class="exp-company">Spade Events</div>
+          <div class="exp-location">India</div>
+        </div>
+        <div class="exp-actions">
+          <span class="learn-more-btn" onclick="showPage('page-exp-spade')">Learn More</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="projects-header">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">Projects that <em>prove the point.</em></h2>
+      </div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card" onclick="if(document.body.classList.contains('upload-mode')){handleUploadClick(event,'proj_formula')}else{showPage('page-proj-formula')}">
+        <div class="project-bg p1 uploadable" data-img-key="proj_formula" id="bg-proj_formula" onclick="handleUploadClick(event,'proj_formula')"></div>
+        <div class="project-date">Apr 2023 – Apr 2025</div>
+        <div class="project-label">
+          <div class="project-num">01</div>
+          <div class="project-title">Formula Focus Website</div>
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-cat">Website Design &amp; Content</div>
+          <div class="project-name-hover">Formula Focus</div>
+          <span class="explore-btn">Explore Project</span>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="if(document.body.classList.contains('upload-mode')){handleUploadClick(event,'proj_gaffitee')}else{showPage('page-proj-gaffitee')}">
+        <div class="project-bg p2 uploadable" data-img-key="proj_gaffitee" id="bg-proj_gaffitee" onclick="handleUploadClick(event,'proj_gaffitee')"></div>
+        <div class="project-date">Jul 2023 – Jul 2024</div>
+        <div class="project-label">
+          <div class="project-num">02</div>
+          <div class="project-title">GraffiTee Goods Etsy</div>
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-cat">E-Commerce Branding</div>
+          <div class="project-name-hover">GraffiTee Goods</div>
+          <span class="explore-btn">Explore Project</span>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="if(document.body.classList.contains('upload-mode')){handleUploadClick(event,'proj_purple')}else{showPage('page-proj-purple')}">
+        <div class="project-bg p3 uploadable" data-img-key="proj_purple" id="bg-proj_purple" onclick="handleUploadClick(event,'proj_purple')"></div>
+        <div class="project-date">Apr 2024</div>
+        <div class="project-label">
+          <div class="project-num">03</div>
+          <div class="project-title">Purplle.com Branding</div>
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-cat">Brand Campaign</div>
+          <div class="project-name-hover">Purplle.com Branding</div>
+          <span class="explore-btn">View Campaign</span>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="if(document.body.classList.contains('upload-mode')){handleUploadClick(event,'proj_xalatan')}else{showPage('page-proj-xalatan')}">
+        <div class="project-bg p4 uploadable" data-img-key="proj_xalatan" id="bg-proj_xalatan" onclick="handleUploadClick(event,'proj_xalatan')"></div>
+        <div class="project-date">Feb 2024</div>
+        <div class="project-label">
+          <div class="project-num">04</div>
+          <div class="project-title">Xalatan Case Study</div>
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-cat">Healthcare Marketing</div>
+          <div class="project-name-hover">Xalatan Case Study</div>
+          <span class="explore-btn">Explore Project</span>
+        </div>
+      </div>
+
+
+
+      <div class="project-card" onclick="if(document.body.classList.contains('upload-mode')){handleUploadClick(event,'proj_slay')}else{showPage('page-proj-slay')}">
+        <div class="project-bg p6 uploadable" data-img-key="proj_slay" id="bg-proj_slay" onclick="handleUploadClick(event,'proj_slay')"></div>
+        <div class="project-date">Mar 2023</div>
+        <div class="project-label">
+          <div class="project-num">05</div>
+          <div class="project-title">Slay Coffee Post Content</div>
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-cat">Social Media Content</div>
+          <div class="project-name-hover">Slay Coffee</div>
+          <span class="explore-btn">View Campaign</span>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="if(document.body.classList.contains('upload-mode')){handleUploadClick(event,'proj_redington')}else{showPage('page-proj-redington')}">
+        <div class="project-bg p7 uploadable" data-img-key="proj_redington" id="bg-proj_redington" onclick="handleUploadClick(event,'proj_redington')"></div>
+        <div class="project-date">Sep 2023</div>
+        <div class="project-label">
+          <div class="project-num">06</div>
+          <div class="project-title">Redington × Apple Campaign</div>
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-cat">Lead Generation Campaign</div>
+          <div class="project-name-hover">Redington × Apple</div>
+          <span class="explore-btn">View Campaign</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="services" style="background: var(--f4);">
+    <div class="services-intro">
+      <div>
+        <div class="section-label">What I Do</div>
+        <h2 class="section-title">Eight ways I can <em>add value</em> to your brand.</h2>
+      </div>
+      <p class="services-desc">From crafting compelling copy to orchestrating full-scale campaigns — I bring a multi-disciplinary approach to every engagement.</p>
+    </div>
+    <div class="services-list">
+      <div class="service-row reveal">
+        <div class="service-num">01</div>
+        <div class="service-name">Content Writing</div>
+        <div class="service-tag">Words that work</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">02</div>
+        <div class="service-name">Graphic Designing</div>
+        <div class="service-tag">Visual storytelling</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">03</div>
+        <div class="service-name">Social Media Marketing</div>
+        <div class="service-tag">Scroll-stopping content</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">04</div>
+        <div class="service-name">Website Management</div>
+        <div class="service-tag">Always on, always polished</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">05</div>
+        <div class="service-name">Influencer Management</div>
+        <div class="service-tag">Reach that resonates</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">06</div>
+        <div class="service-name">Email Marketing</div>
+        <div class="service-tag">Inboxes, owned</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">07</div>
+        <div class="service-name">Performance Marketing</div>
+        <div class="service-tag">Data-led growth</div>
+      </div>
+      <div class="service-row reveal">
+        <div class="service-num">08</div>
+        <div class="service-name">Event Coordination</div>
+        <div class="service-tag">Moments that matter</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Liked my potential?<br>Let's <em>create together.</em></h2>
+    <p class="contact-sub">Tailor-made solutions to your marketing needs, handcrafted with creativity and strategy that wins hearts.</p>
+    <button class="btn-white" onclick="openContactForm()">Send Me a Message</button>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/ankita-tomar" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/_ankita_t0mar_" class="contact-link" target="_blank">Instagram</a>
+      <a href="mailto:ankita07tomar@gmail.com" class="contact-link">ankita07tomar@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Ankita Tomar</div>
+    <div class="footer-copy">© 2026 · Marketing &amp; Content Professional · Gwalior, India</div>
+    <a id="saveFileLink" onclick="saveFile(); return false;" href="#" style="font-size:0.55rem;opacity:0.18;color:var(--cream);text-decoration:none;letter-spacing:0.08em;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='0.18'">save</a>
+  </footer>
+
+</div><!-- end #page-home -->
+
+
+<!-- ═══════════════════════════════════════════════
+     EXPERIENCE: CELEX ENSEMBLE
+═══════════════════════════════════════════════ -->
+<div id="page-exp-celex" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#experience')">Back to Experience</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#projects'); return false;">Projects</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" id="bg-exp_celex" data-img-key="exp_celex" style="background-image: url('https://images.unsplash.com/photo-1468818438311-4bab781ab9b8?w=1600&auto=format&fit=crop');"></div>
+
+    <button class="upload-trigger-btn" onclick="handleUploadClick(event,'exp_celex')">📷 Change Photo</button>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Current Role · May 2025 – Present</div>
+      <h1 class="detail-title">Communications &amp;<br><em>Marketing Executive</em></h1>
+      <div class="detail-subtitle">CELEX Ensemble · Luxury Wedding Media Agency · United Kingdom</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Company</div>
+      <div class="detail-meta-value">CELEX Ensemble</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Duration</div>
+      <div class="detail-meta-value">May 2025 – Present</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Location</div>
+      <div class="detail-meta-value">United Kingdom</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Sector</div>
+      <div class="detail-meta-value">Events &amp; Media Agency</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Full-Time · Remote</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Overview</div>
+    <h2 class="section-title">Content &amp; campaigns for a <em>luxury wedding media agency.</em></h2>
+    <div class="detail-body">
+      <p>At CELEX Ensemble, a luxury wedding media agency based in the United Kingdom, I serve as the Communications and Marketing Executive — driving content, communication, and campaigns while managing both brand storytelling and B2B engagement for a high-end clientele.</p>
+      <p>This role requires balancing the emotional, aspirational language of luxury weddings with structured content systems and data-driven B2B strategy — ensuring every piece of communication consistently reflects the brand's premium positioning while actively generating new business leads.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Responsibilities</div>
+    <h2 class="section-title">Key areas of <em>focus &amp; ownership.</em></h2>
+    <div class="detail-grid-3">
+      <div class="resp-card reveal">
+        <div class="resp-num">01</div>
+        <div class="resp-title">LinkedIn Content Strategy</div>
+        <div class="resp-desc">Conceptualised and designed the agency's LinkedIn content strategy — creating a structured editorial framework that positions CELEX as a leading luxury wedding media brand in the B2B space.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">02</div>
+        <div class="resp-title">Website Design &amp; Management</div>
+        <div class="resp-desc">Managed website design and ongoing updates using WordPress Elementor — maintaining a visually polished, conversion-optimised digital presence that reflects the brand's luxury identity.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">03</div>
+        <div class="resp-title">Communication &amp; Lead Generation</div>
+        <div class="resp-desc">Led communication outreach initiatives and supported lead generation efforts — crafting targeted messaging that engaged prospective clients and drove enquiries for the agency's premium services.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">04</div>
+        <div class="resp-title">Multi-Platform Content</div>
+        <div class="resp-desc">Designed multi-platform content across posts, reels, and blogs for clients — developing bespoke content tailored to each client's voice and audience while maintaining consistent brand quality standards.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">05</div>
+        <div class="resp-title">B2B Newsletter</div>
+        <div class="resp-desc">Built and published a monthly B2B newsletter distributed to a 2,000+ professional community — creating value-driven editorial content that strengthened relationships with industry partners and prospects.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">06</div>
+        <div class="resp-title">Sales &amp; Event Outreach</div>
+        <div class="resp-desc">Created sales and event outreach presentations — developing compelling pitch decks and communication materials that supported the agency's business development efforts.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Impact</div>
+    <h2 class="section-title">Highlights from my <em>time here.</em></h2>
+    <div class="achievement-list">
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Strengthened brand communication across platforms</strong> by building structured content systems that improved consistency and ensured every client-facing touchpoint reflected the agency's luxury positioning.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Supported both audience engagement and lead generation efforts</strong> — with the B2B newsletter and LinkedIn strategy working in tandem to deepen relationships with the agency's 2,000+ professional community.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Built and managed the agency's WordPress website</strong> using Elementor — delivering a polished digital presence that communicates luxury quality and converts visitor interest into business enquiries.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Established a repeatable content production workflow</strong> for multi-platform content (posts, reels, blogs) — reducing turnaround time and maintaining high creative standards across all deliverables.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Skills Applied</div>
+    <h2 class="section-title">Tools &amp; expertise <em>in action.</em></h2>
+    <div class="skills-chips">
+      <span class="skill-chip">LinkedIn Strategy</span>
+      <span class="skill-chip">WordPress Elementor</span>
+      <span class="skill-chip">Content Strategy</span>
+      <span class="skill-chip">Email Newsletter</span>
+      <span class="skill-chip">B2B Marketing</span>
+      <span class="skill-chip">Lead Generation</span>
+      <span class="skill-chip">Multi-Platform Content</span>
+      <span class="skill-chip">Reels &amp; Blogs</span>
+      <span class="skill-chip">Sales Presentations</span>
+      <span class="skill-chip">Brand Storytelling</span>
+    </div>
+  </div>
+
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">Interested in my work at CELEX?</div>
+    <div class="detail-cta-sub">Let's talk about how I can bring the same structured content strategy and B2B engagement thinking to your brand.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Get In Touch</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#experience')">← Back to Experience</span>
+    </div>
+  </div>
+</div><!-- end page-exp-celex -->
+
+
+<!-- ═══════════════════════════════════════════════
+     EXPERIENCE: PETROZONE INTERNATIONAL
+═══════════════════════════════════════════════ -->
+<div id="page-exp-petrozone" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#experience')">Back to Experience</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#projects'); return false;">Projects</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" id="bg-exp_petrozone" data-img-key="exp_petrozone" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1600&auto=format&fit=crop');"></div>
+
+    <button class="upload-trigger-btn" onclick="handleUploadClick(event,'exp_petrozone')">📷 Change Photo</button>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Jan 2025 – Mar 2026</div>
+      <h1 class="detail-title">Digital Marketing<br><em>Specialist</em></h1>
+      <div class="detail-subtitle">Petrozone International · Inspection Industry · Saudi Arabia</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Company</div>
+      <div class="detail-meta-value">Petrozone International</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Duration</div>
+      <div class="detail-meta-value">Jan 2025 – Mar 2026</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Location</div>
+      <div class="detail-meta-value">Saudi Arabia</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Sector</div>
+      <div class="detail-meta-value">Energy &amp; B2B</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Full-Time · Remote</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Overview</div>
+    <h2 class="section-title">Scaling LinkedIn presence across <em>multiple business units.</em></h2>
+    <div class="detail-body">
+      <p>Petrozone International operates across multiple business verticals within the Inspection Industry in Saudi Arabia. As their Digital Marketing Specialist, I manage the company's LinkedIn presence across these verticals — building credibility, driving consistent engagement, and growing a professional audience in a sector where trust and technical authority are paramount.</p>
+      <p>This role has pushed me to develop deep B2B content expertise — translating complex inspection industry services into clear, compelling digital communications that resonate with decision-makers across the GCC region.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Responsibilities</div>
+    <h2 class="section-title">The scope of my <em>contribution.</em></h2>
+    <div class="detail-grid-3">
+      <div class="resp-card reveal">
+        <div class="resp-num">01</div>
+        <div class="resp-title">LinkedIn Strategy &amp; Execution</div>
+        <div class="resp-desc">Led the end-to-end LinkedIn marketing strategy and execution across Petrozone's business units — managing content planning, post creation, community engagement, and performance tracking.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">02</div>
+        <div class="resp-title">Multi-Vertical Content Management</div>
+        <div class="resp-desc">Managed content across multiple business verticals within the inspection industry — developing distinct content pillars for each unit while maintaining a cohesive overarching brand voice.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">03</div>
+        <div class="resp-title">Corporate Design Assets</div>
+        <div class="resp-desc">Designed corporate profile, project portfolio, and business assets — creating polished branded materials that elevated Petrozone's professional image and supported business development activities.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">04</div>
+        <div class="resp-title">Jersey Sponsorship Campaign</div>
+        <div class="resp-desc">Planned and executed a marketing strategy for a jersey sponsorship initiative — developing the campaign concept, supporting content, and outreach strategy to maximise brand visibility through the sponsorship.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Impact</div>
+    <h2 class="section-title">Numbers that <em>prove the work.</em></h2>
+    <div class="proj-stats" style="margin-top:2.5rem;">
+      <div class="proj-stat">
+        <div class="proj-stat-num">45,000+</div>
+        <div class="proj-stat-label">Annual Impressions</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat-num">2,500+</div>
+        <div class="proj-stat-label">New Followers Gained</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat-num">10%+</div>
+        <div class="proj-stat-label">Engagement Rate</div>
+      </div>
+      <div class="proj-stat">
+        <div class="proj-stat-num">1,100+</div>
+        <div class="proj-stat-label">Newsletter Subscribers</div>
+      </div>
+    </div>
+    <div class="achievement-list" style="margin-top:2rem;">
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Scaled LinkedIn presence across business units</strong> — driving over 45,000 impressions annually and growing the audience by 2,500+ followers through consistent, high-quality content across the Petrozone verticals.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Achieved a consistent 10%+ engagement rate</strong> — significantly above industry benchmarks for B2B LinkedIn content, reflecting the relevance and quality of content delivered to a specialist professional audience.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Built a newsletter base of 1,100+ subscribers</strong> — establishing a direct communication channel with a qualified professional audience that supports ongoing relationship-building and lead nurturing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Skills Applied</div>
+    <h2 class="section-title">Tools &amp; expertise <em>in action.</em></h2>
+    <div class="skills-chips">
+      <span class="skill-chip">LinkedIn Marketing</span>
+      <span class="skill-chip">B2B Content Strategy</span>
+      <span class="skill-chip">Multi-Vertical Management</span>
+      <span class="skill-chip">Corporate Design</span>
+      <span class="skill-chip">Newsletter Marketing</span>
+      <span class="skill-chip">Sponsorship Marketing</span>
+      <span class="skill-chip">Campaign Strategy</span>
+      <span class="skill-chip">Canva</span>
+      <span class="skill-chip">Analytics &amp; Reporting</span>
+    </div>
+  </div>
+
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">Want this kind of digital impact?</div>
+    <div class="detail-cta-sub">45,000+ impressions, 2,500+ followers, 10%+ engagement — I build LinkedIn strategies that deliver measurable B2B results. Let's talk.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Get In Touch</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#experience')">← Back to Experience</span>
+    </div>
+  </div>
+</div><!-- end page-exp-petrozone -->
+
+
+<!-- ═══════════════════════════════════════════════
+     EXPERIENCE: SHARAF DG LLC
+═══════════════════════════════════════════════ -->
+<div id="page-exp-sharaf" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#experience')">Back to Experience</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#projects'); return false;">Projects</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" id="bg-exp_sharaf" data-img-key="exp_sharaf" style="background-image: url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1600&auto=format&fit=crop');"></div>
+
+    <button class="upload-trigger-btn" onclick="handleUploadClick(event,'exp_sharaf')">📷 Change Photo</button>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Internship · Jul – Nov 2022</div>
+      <h1 class="detail-title">Marketing<br><em>Internship</em></h1>
+      <div class="detail-subtitle">Sharaf DG LLC · Leading Electronics Retail Brand · Dubai, UAE</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Company</div>
+      <div class="detail-meta-value">Sharaf DG LLC</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Duration</div>
+      <div class="detail-meta-value">Jul – Nov 2022</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Location</div>
+      <div class="detail-meta-value">Dubai, UAE</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Sector</div>
+      <div class="detail-meta-value">Retail Electronics</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Internship</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Overview</div>
+    <h2 class="section-title">Campaigns &amp; influencer marketing <em>at scale.</em></h2>
+    <div class="detail-body">
+      <p>Sharaf DG is one of the Middle East's leading consumer electronics retailers with a presence across 10 countries and over 60 stores. As a Marketing Intern, I executed campaigns and influencer marketing for this high-volume retail brand — managing scale and speed across digital platforms in one of the world's most competitive consumer electronics markets.</p>
+      <p>This role gave me invaluable hands-on exposure to influencer marketing at volume, multi-team content coordination, and the fast-paced reality of campaign execution at enterprise scale — skills that have shaped how I approach every marketing challenge since.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Responsibilities</div>
+    <h2 class="section-title">From influencer brief to <em>campaign execution.</em></h2>
+    <div class="detail-grid-3">
+      <div class="resp-card reveal">
+        <div class="resp-num">01</div>
+        <div class="resp-title">Influencer Management</div>
+        <div class="resp-desc">Managed 60+ influencer collaborations monthly — handling outreach, briefing, content approvals, and post-campaign reporting across a diverse roster of creators relevant to Sharaf DG's product categories.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">02</div>
+        <div class="resp-title">Cross-Team Content Coordination</div>
+        <div class="resp-desc">Coordinated content across category and design teams — acting as the liaison between content creators, category managers, and the design department to ensure all assets were delivered on-brief and on-schedule.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">03</div>
+        <div class="resp-title">Advertising Agency POC</div>
+        <div class="resp-desc">Acted as the primary point of contact for the advertising agency — managing briefings, feedback cycles, and approvals to ensure campaign deliverables met Sharaf DG's standards and timelines.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">04</div>
+        <div class="resp-title">Email Campaigns via Synerise</div>
+        <div class="resp-desc">Managed email marketing campaigns using the Synerise platform — planning, building, and deploying targeted email communications to Sharaf DG's customer base for product promotions and seasonal campaigns.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">05</div>
+        <div class="resp-title">Influencer Events &amp; Workshops</div>
+        <div class="resp-desc">Facilitated influencer events and workshops — coordinating logistics, managing creator attendance and experience, and ensuring events delivered the brand moments needed for high-quality organic content.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">06</div>
+        <div class="resp-title">SKU-Level Performance Reports</div>
+        <div class="resp-desc">Generated SKU-level performance reports — tracking campaign and influencer content performance at a product level to identify top-performing collaborations and inform future influencer and product marketing decisions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Impact</div>
+    <h2 class="section-title">High-volume execution <em>at enterprise scale.</em></h2>
+    <div class="achievement-list">
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Managed 60+ influencer collaborations monthly</strong> — supporting high-volume campaign execution while maintaining quality, consistency, and on-brand messaging across all creator content.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Improved coordination efficiency</strong> across category and design teams — streamlining the content production pipeline so campaigns were delivered faster and with fewer revision cycles.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Ensured consistent brand messaging across campaigns</strong> — with all influencer content and advertising agency outputs aligned to Sharaf DG's brand guidelines and seasonal promotional strategy.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Skills Applied</div>
+    <h2 class="section-title">Skills built in the <em>field.</em></h2>
+    <div class="skills-chips">
+      <span class="skill-chip">Influencer Marketing</span>
+      <span class="skill-chip">Campaign Execution</span>
+      <span class="skill-chip">Email Marketing</span>
+      <span class="skill-chip">Synerise</span>
+      <span class="skill-chip">Content Coordination</span>
+      <span class="skill-chip">Agency Management</span>
+      <span class="skill-chip">Performance Reporting</span>
+      <span class="skill-chip">Event Facilitation</span>
+      <span class="skill-chip">SKU Analytics</span>
+    </div>
+  </div>
+
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">This is where the foundation was built.</div>
+    <div class="detail-cta-sub">From managing 60+ influencer collaborations monthly to campaign execution at enterprise scale — let me bring that same energy to your brand.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Get In Touch</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#experience')">← Back to Experience</span>
+    </div>
+  </div>
+</div><!-- end page-exp-sharaf -->
+
+
+<!-- ═══════════════════════════════════════════════
+     EXPERIENCE: SPADE EVENTS
+═══════════════════════════════════════════════ -->
+<div id="page-exp-spade" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#experience')">Back to Experience</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#projects'); return false;">Projects</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" id="bg-exp_spade" data-img-key="exp_spade" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&auto=format&fit=crop');"></div>
+
+    <button class="upload-trigger-btn" onclick="handleUploadClick(event,'exp_spade')">📷 Change Photo</button>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Sep 2020 – May 2021</div>
+      <h1 class="detail-title">Project Manager &amp;<br><em>Content Writer</em></h1>
+      <div class="detail-subtitle">Spade · Event Management Company · India</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Company</div>
+      <div class="detail-meta-value">Spade</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Duration</div>
+      <div class="detail-meta-value">Sep 2020 – May 2021</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Location</div>
+      <div class="detail-meta-value">India</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Sector</div>
+      <div class="detail-meta-value">Event Management</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Full-Time</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Overview</div>
+    <h2 class="section-title">Building content &amp; creative execution <em>for an event company.</em></h2>
+    <div class="detail-body">
+      <p>Spade is an event management company based in India where I built content and managed creative execution — focusing on storytelling across formats. This role was the starting point of my professional marketing journey, giving me a multifaceted foundation across SEO content, editorial management, design collaboration, and audio content.</p>
+      <p>The experience taught me that great storytelling takes many forms — whether it's a search-optimised article, a corporate magazine, or a podcast conversation. It was here I first discovered the power of content as a long-term business asset, and the discipline required to produce it consistently at quality.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Responsibilities</div>
+    <h2 class="section-title">Where I owned the <em>creative and the editorial.</em></h2>
+    <div class="detail-grid-3">
+      <div class="resp-card reveal">
+        <div class="resp-num">01</div>
+        <div class="resp-title">SEO-Optimised Content</div>
+        <div class="resp-desc">Developed SEO-optimised content across multiple formats — researching keywords, writing long-form articles, and crafting web copy designed to drive organic traffic and improve search visibility for Spade's digital presence.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">02</div>
+        <div class="resp-title">Magazine Project Management</div>
+        <div class="resp-desc">Managed a content writing team for a corporate magazine project — overseeing editorial planning, writer briefings, quality control, and final production to deliver a polished publication on time and to standard.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">03</div>
+        <div class="resp-title">Design Team Collaboration</div>
+        <div class="resp-desc">Collaborated closely with design teams — ensuring that written content and visual design worked in harmony across all deliverables, from digital assets to print materials and event collateral.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">04</div>
+        <div class="resp-title">Podcast Sessions</div>
+        <div class="resp-desc">Conducted podcast sessions for clients — planning episode topics, preparing interview frameworks, hosting conversations, and overseeing production to deliver engaging audio content that served clients' communication goals.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Impact</div>
+    <h2 class="section-title">A content foundation <em>built from scratch.</em></h2>
+    <div class="achievement-list">
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Drove SEO-led traffic growth</strong> — producing optimised content that improved organic search visibility and established a sustainable, compounding digital traffic source for the business.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Successfully launched a corporate magazine</strong> — managing the full editorial and production process from concept to print, delivering a publication that exceeded client expectations in quality and depth.</div>
+      </div>
+      <div class="achievement-item reveal">
+        <div class="achievement-icon">✦</div>
+        <div class="achievement-text"><strong>Delivered engaging podcast content that exceeded audience expectations</strong> — building a recurring audio content series that strengthened client communications and demonstrated storytelling versatility across formats.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">Skills Applied</div>
+    <h2 class="section-title">Capabilities built <em>from the ground up.</em></h2>
+    <div class="skills-chips">
+      <span class="skill-chip">SEO Content Writing</span>
+      <span class="skill-chip">Editorial Management</span>
+      <span class="skill-chip">Team Management</span>
+      <span class="skill-chip">Magazine Production</span>
+      <span class="skill-chip">Podcast Hosting</span>
+      <span class="skill-chip">Design Collaboration</span>
+      <span class="skill-chip">Content Strategy</span>
+      <span class="skill-chip">Storytelling</span>
+      <span class="skill-chip">Project Management</span>
+    </div>
+  </div>
+
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">This is where the journey began.</div>
+    <div class="detail-cta-sub">From SEO articles to podcasts to magazines — I've always believed content is a long game. Let me bring that depth and discipline to your brand.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Let's Work Together</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#experience')">← Back to Experience</span>
+    </div>
+  </div>
+</div><!-- end page-exp-spade -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT: FORMULA FOCUS
+═══════════════════════════════════════════════ -->
+<div id="page-proj-formula" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#projects')">Back to Projects</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#experience'); return false;">Experience</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" data-img-key="proj_formula" style="background-image: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&auto=format&fit=crop');"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Website Design &amp; Content · Personal Project</div>
+      <h1 class="detail-title">Formula<br><em>Focus</em></h1>
+      <div class="detail-subtitle">A fan-driven F1 media platform built for speed lovers.</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Category</div>
+      <div class="detail-meta-value">Website &amp; Content</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Platform</div>
+      <div class="detail-meta-value">WordPress</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Audience</div>
+      <div class="detail-meta-value">F1 Enthusiasts</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Community</div>
+      <div class="detail-meta-value">2,000+ Viewers</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Status</div>
+      <div class="detail-meta-value">Apr 2023 – Apr 2025</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Project Overview</div>
+    <h2 class="section-title">From fan blog to <em>media platform.</em></h2>
+    <div class="detail-body">
+      <p>What started as a fun project with a friend has evolved into a remarkable success — attracting a community of over 2,000 Formula 1 enthusiasts within just two years. Far exceeding initial expectations for a blogging platform, Formula Focus has transformed from a simple blog into a media distribution platform curated by fans, for fans.</p>
+      <p>This venture introduced me to WordPress and website design, areas I previously had little knowledge about. It has since become one of my strongest skills — and I'm committed to exploring this field further. The project combines my passion for motorsport with my growing expertise in content strategy, SEO, and community building.</p>
+    </div>
+  </div>
+
+  <div class="proj-stats">
+    <div class="proj-stat">
+      <div class="proj-stat-num">2,000+</div>
+      <div class="proj-stat-label">Community Viewers</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">2 Yrs</div>
+      <div class="proj-stat-label">Platform Lifespan</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">F1</div>
+      <div class="proj-stat-label">Content Focus</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">Weekly</div>
+      <div class="proj-stat-label">Content Cadence</div>
+    </div>
+  </div>
+
+  <div class="detail-section-alt">
+    <div class="section-label">What I Built</div>
+    <h2 class="section-title">Skills gained by <em>doing.</em></h2>
+    <div class="detail-grid-2">
+      <div>
+        <div class="detail-body" style="margin-top:0;">
+          <p>Formula Focus became my real-world classroom for digital publishing. Every aspect of the platform — from its visual design to its SEO infrastructure — was built and refined by me, with zero prior experience in web development at the outset.</p>
+          <p>The platform delivers race weekend content, driver analysis, and fan commentary to an engaged community — all delivered with the speed and flair that F1 demands.</p>
+        </div>
+      </div>
+      <div>
+        <div class="achievement-list" style="margin-top:0;">
+          <div class="achievement-item">
+            <div class="achievement-icon">⚡</div>
+            <div class="achievement-text"><strong>Website Design</strong> — end-to-end design and build on WordPress</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">✍</div>
+            <div class="achievement-text"><strong>Content Writing</strong> — race reports, features, and analysis</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">🔗</div>
+            <div class="achievement-text"><strong>App Integration</strong> — linking third-party tools and plugins</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">📊</div>
+            <div class="achievement-text"><strong>Analytics</strong> — tracking audience growth and content performance</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">🔍</div>
+            <div class="achievement-text"><strong>SEO Strategy</strong> — organic search optimisation driving discoverability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section" data-gallery-for="proj_formula">
+    <div class="section-label">Platform Preview</div>
+    <h2 class="section-title">A look at <em>Formula Focus.</em></h2>
+    <div class="pdf-zone" id="pdf-section-proj_formula" style="display:none">
+      <div class="pdf-upload-zone">
+        <p style="font-size:0.8rem;opacity:0.5;margin-bottom:1rem;">Upload a PDF presentation to display it as a slideshow</p>
+        <button class="pdf-upload-btn" onclick="triggerPdfUpload('proj_formula')">📄 Upload PDF</button>
+      </div>
+      <div class="pdf-slider-wrap" id="pdf-slider-proj_formula">
+        <div class="pdf-track" id="pdf-track-proj_formula"></div>
+        <div class="pdf-controls">
+          <button class="pdf-nav" onclick="pdfPrev('proj_formula')">←</button>
+          <span class="pdf-counter" id="pdf-counter-proj_formula">1 / 1</span>
+          <button class="pdf-nav" onclick="pdfNext('proj_formula')">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="proj-gallery">
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/01/screenshot-2025-01-23-at-7.00.59e280afpm.png" alt="Formula Focus website" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/01/image.png" alt="Formula Focus content" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/01/image-1.png" alt="Formula Focus content 2" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/01/image-2.png" alt="Formula Focus stats" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/01/image-3.png" alt="Formula Focus feature" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">All the thrill &amp; drama, delivered every weekend.</div>
+    <div class="detail-cta-sub">Connect with me to build something similar for your brand — or talk about how I can apply the same content strategy and community-building thinking to your next project.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Get In Touch</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#projects')">← Back to Projects</span>
+    </div>
+  </div>
+</div><!-- end page-proj-formula -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT: SLAY COFFEE
+═══════════════════════════════════════════════ -->
+<div id="page-proj-slay" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#projects')">Back to Projects</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#experience'); return false;">Experience</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" data-img-key="proj_slay" style="background-image: url('https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/pink-latte-launch-instagram-post.jpg'), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1600&auto=format&fit=crop');"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Social Media Content · Instagram Campaign</div>
+      <h1 class="detail-title">Slay Coffee<br><em>Post Content</em></h1>
+      <div class="detail-subtitle">Dark humour meets café culture — a content series that slays.</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Category</div>
+      <div class="detail-meta-value">Social Media Content</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Platform</div>
+      <div class="detail-meta-value">Instagram</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Brand</div>
+      <div class="detail-meta-value">Slay Coffee</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Tone</div>
+      <div class="detail-meta-value">Dark Humour</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Content Series</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Project Brief</div>
+    <h2 class="section-title">Coffee with <em>a wicked sense of humour.</em></h2>
+    <div class="detail-body">
+      <p>Slay Coffee briefed me on two key content challenges: first, to continue and expand their distinctive dark humour-themed Instagram content series — posts that turn everyday coffee moments into sardonic, shareable cultural commentary. Second, to create a Valentine's Day concept for the launch of their new "Pink Latte."</p>
+      <p>The challenge was to balance humour with warmth — making the brand feel edgy and distinctive without alienating their growing café community. The result: a content series that felt authentic, repeatable, and very, very shareable.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt" data-gallery-for="proj_slay">
+    <div class="section-label">Content Gallery</div>
+    <h2 class="section-title">Dark humour Instagram posts <em>&amp; the Pink Latte launch.</em></h2>
+    <div class="pdf-zone" id="pdf-section-proj_slay" style="display:none">
+      <div class="pdf-upload-zone">
+        <p style="font-size:0.8rem;opacity:0.5;margin-bottom:1rem;">Upload a PDF presentation to display it as a slideshow</p>
+        <button class="pdf-upload-btn" onclick="triggerPdfUpload('proj_slay')">📄 Upload PDF</button>
+      </div>
+      <div class="pdf-slider-wrap" id="pdf-slider-proj_slay">
+        <div class="pdf-track" id="pdf-track-proj_slay"></div>
+        <div class="pdf-controls">
+          <button class="pdf-nav" onclick="pdfPrev('proj_slay')">←</button>
+          <span class="pdf-counter" id="pdf-counter-proj_slay">1 / 1</span>
+          <button class="pdf-nav" onclick="pdfNext('proj_slay')">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="proj-gallery">
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/1-2.jpg" alt="Slay Coffee post 1" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/2-4.jpg" alt="Slay Coffee post 2" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/3-2.jpg" alt="Slay Coffee post 3" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/4-2.jpg" alt="Slay Coffee post 4" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/5-2.jpg" alt="Slay Coffee post 5" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/6-2.jpg" alt="Slay Coffee post 6" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/7-2.jpg" alt="Slay Coffee post 7" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/9-1.jpg" alt="Slay Coffee post 8" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/10-1.jpg" alt="Slay Coffee post 9" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/12.jpg" alt="Slay Coffee post 10" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/13.jpg" alt="Slay Coffee post 11" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/pink-latte-launch-instagram-post.jpg" alt="Pink Latte launch" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">FOMO hitting hard? ☕</div>
+    <div class="detail-cta-sub">Want content that's as bold as your brand? I create social media series that build personality, spark conversations, and keep audiences coming back.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Let's Create Together</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#projects')">← Back to Projects</span>
+    </div>
+  </div>
+</div><!-- end page-proj-slay -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT: GAFFITEE GOODS
+═══════════════════════════════════════════════ -->
+<div id="page-proj-gaffitee" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#projects')">Back to Projects</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#experience'); return false;">Experience</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" data-img-key="proj_gaffitee" style="background-image: url('https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/gg-facebook-post.jpg'), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&auto=format&fit=crop');"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">E-Commerce Branding · Etsy · Entrepreneurship</div>
+      <h1 class="detail-title">Graffitee<br><em>Goods</em></h1>
+      <div class="detail-subtitle">150+ original designs. A bold creative entrepreneurship chapter.</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Category</div>
+      <div class="detail-meta-value">E-Commerce &amp; Design</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Platform</div>
+      <div class="detail-meta-value">Etsy / Printify</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Products</div>
+      <div class="detail-meta-value">150+ Designs</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Niches</div>
+      <div class="detail-meta-value">Sports, Nature, Travel</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Model</div>
+      <div class="detail-meta-value">Print-on-Demand</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Project Overview</div>
+    <h2 class="section-title">My own Edison moment <em>in entrepreneurship.</em></h2>
+    <div class="detail-body">
+      <p>Graffitee Goods was a bold creative venture I launched in collaboration with Printify.com, fuelled by my entrepreneurial spirit and artistic flair. With over 150 unique designs, the shop catered to sports enthusiasts (Cricket, Formula 1), nature lovers, travellers, and more — offering stylish clothing and accessories with personality.</p>
+      <p>While financial constraints led to its closure, the journey was anything but a failure — think of it as my own Edison moment. I gained valuable expertise in product design, Etsy SEO, e-commerce marketing, and the drop-shipping model, all while receiving genuine admiration for my creative work. The creative nerve? Still very much alive.</p>
+    </div>
+  </div>
+
+  <div class="proj-stats">
+    <div class="proj-stat">
+      <div class="proj-stat-num">150+</div>
+      <div class="proj-stat-label">Unique Designs</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">4+</div>
+      <div class="proj-stat-label">Niche Categories</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">Etsy</div>
+      <div class="proj-stat-label">Sales Platform</div>
+    </div>
+    <div class="proj-stat">
+      <div class="proj-stat-num">POD</div>
+      <div class="proj-stat-label">Business Model</div>
+    </div>
+  </div>
+
+  <div class="detail-section-alt" data-gallery-for="proj_gaffitee">
+    <div class="section-label">Design Gallery</div>
+    <h2 class="section-title">Clothing &amp; accessories <em>with character.</em></h2>
+    <div class="pdf-zone" id="pdf-section-proj_gaffitee" style="display:none">
+      <div class="pdf-upload-zone">
+        <p style="font-size:0.8rem;opacity:0.5;margin-bottom:1rem;">Upload a PDF presentation to display it as a slideshow</p>
+        <button class="pdf-upload-btn" onclick="triggerPdfUpload('proj_gaffitee')">📄 Upload PDF</button>
+      </div>
+      <div class="pdf-slider-wrap" id="pdf-slider-proj_gaffitee">
+        <div class="pdf-track" id="pdf-track-proj_gaffitee"></div>
+        <div class="pdf-controls">
+          <button class="pdf-nav" onclick="pdfPrev('proj_gaffitee')">←</button>
+          <span class="pdf-counter" id="pdf-counter-proj_gaffitee">1 / 1</span>
+          <button class="pdf-nav" onclick="pdfNext('proj_gaffitee')">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="proj-gallery">
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/graffitee-goods-banner-1.png" alt="Graffitee Goods banner" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/new-arrivals.jpg" alt="New arrivals" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/44.png" alt="Design 44" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/50.png" alt="Design 50" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/49.png" alt="Design 49" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/36.png" alt="Design 36" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/43.png" alt="Design 43" loading="lazy">
+      </div>
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/screenshot-2025-03-01-at-2.10.10e280afam.png" alt="Etsy shop" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">Waiting for that 'bulb' to glow with creativity?</div>
+    <div class="detail-cta-sub">Graffitee Goods taught me that great ideas deserve great execution. Let's bring your next creative venture to life — together.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Let's Talk</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#projects')">← Back to Projects</span>
+    </div>
+  </div>
+</div><!-- end page-proj-gaffitee -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT: PURPLE.COM BRANDING
+═══════════════════════════════════════════════ -->
+<div id="page-proj-purple" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#projects')">Back to Projects</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#experience'); return false;">Experience</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" data-img-key="proj_purple" style="background-image: url('https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/1.jpg'), url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1600&auto=format&fit=crop');"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Brand Campaign · Skincare · Academic Project</div>
+      <h1 class="detail-title">Purple.com<br><em>Branding Campaign</em></h1>
+      <div class="detail-subtitle">Welcome to the world of Honest Science — a full brand identity project.</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Category</div>
+      <div class="detail-meta-value">Brand Campaign</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Sector</div>
+      <div class="detail-meta-value">Skincare / Beauty</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Brand</div>
+      <div class="detail-meta-value">Purple.com (Purplle)</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Focus</div>
+      <div class="detail-meta-value">Full Brand Identity</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Campaign Strategy</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Brand Overview</div>
+    <h2 class="section-title">Honest science. <em>Transparent beauty.</em></h2>
+    <div class="detail-body">
+      <p>Purple.com is an ingredient-conscious skincare brand delivering tangible results with transparency at every step. Their formulations are rooted in rigorous scientifically researched ingredients — ensuring each product is a powerhouse of innovation designed to meet the diverse and evolving needs of your skin.</p>
+      <p>The brand believes in transparency of information, efficacy, and expectations — allowing people to make sound, informed choices and feel confident in their skincare journey. My campaign work for Purple.com developed the full brand identity system from tagline to product packaging to performance marketing creatives.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt" data-gallery-for="proj_purple">
+    <div class="section-label">Campaign Gallery</div>
+    <h2 class="section-title">From persona to packaging — <em>the full brand story.</em></h2>
+    <div class="pdf-zone" id="pdf-section-proj_purple" style="display:none">
+      <div class="pdf-upload-zone">
+        <p style="font-size:0.8rem;opacity:0.5;margin-bottom:1rem;">Upload a PDF presentation to display it as a slideshow</p>
+        <button class="pdf-upload-btn" onclick="triggerPdfUpload('proj_purple')">📄 Upload PDF</button>
+      </div>
+      <div class="pdf-slider-wrap" id="pdf-slider-proj_purple">
+        <div class="pdf-track" id="pdf-track-proj_purple"></div>
+        <div class="pdf-controls">
+          <button class="pdf-nav" onclick="pdfPrev('proj_purple')">←</button>
+          <span class="pdf-counter" id="pdf-counter-proj_purple">1 / 1</span>
+          <button class="pdf-nav" onclick="pdfNext('proj_purple')">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="proj-gallery">
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/1.jpg" alt="Purple.com brand overview" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/2.jpg" alt="Brand tagline and key" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/3.jpg" alt="User persona" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/4.jpg" alt="Homepage banner" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/5.jpg" alt="Product packaging" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/6.jpg" alt="Product promo" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/7.jpg" alt="Product marketing 1" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/8.jpg" alt="Product marketing 2" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">What I Delivered</div>
+    <h2 class="section-title">A complete brand <em>system from scratch.</em></h2>
+    <div class="detail-grid-3">
+      <div class="resp-card reveal">
+        <div class="resp-num">01</div>
+        <div class="resp-title">Brand Tagline &amp; Messaging</div>
+        <div class="resp-desc">Developed the core brand voice and tagline framework — "Welcome to our world of Honest Science" — anchoring all campaign communications in authenticity and transparency.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">02</div>
+        <div class="resp-title">User Persona Development</div>
+        <div class="resp-desc">Created detailed brand user personas identifying the core customer profile — demographics, psychographics, skincare concerns, and purchasing behaviours — to guide all campaign targeting decisions.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">03</div>
+        <div class="resp-title">Campaign Visuals</div>
+        <div class="resp-desc">Designed the full suite of campaign materials — homepage banners, product packaging concepts, promotional creatives, and product-focused marketing assets for digital channels.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">Every great brand starts with honest storytelling.</div>
+    <div class="detail-cta-sub">From skincare to any consumer brand — I craft campaigns that connect with your audience at an emotional and rational level simultaneously.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Start a Brand Project</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#projects')">← Back to Projects</span>
+    </div>
+  </div>
+</div><!-- end page-proj-purple -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT: XALATAN CASE STUDY
+═══════════════════════════════════════════════ -->
+<div id="page-proj-xalatan" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#projects')">Back to Projects</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#experience'); return false;">Experience</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" data-img-key="proj_xalatan" style="background-image: url('https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/1-1.jpg'), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&auto=format&fit=crop');"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Healthcare Marketing · Market Research · Case Study</div>
+      <h1 class="detail-title">Xalatan<br><em>Case Study</em></h1>
+      <div class="detail-subtitle">Unlocking market intelligence for a pharmaceutical brand.</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Category</div>
+      <div class="detail-meta-value">Healthcare Marketing</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Product</div>
+      <div class="detail-meta-value">Xalatan (Latanoprost)</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Sector</div>
+      <div class="detail-meta-value">Pharmaceutical</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Method</div>
+      <div class="detail-meta-value">Market Research</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Strategic Analysis</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Project Brief</div>
+    <h2 class="section-title">Data-driven insights for a <em>pharmaceutical market.</em></h2>
+    <div class="detail-body">
+      <p>Xalatan is a widely prescribed ophthalmic solution used in the treatment of glaucoma and ocular hypertension. This case study involved a comprehensive market research and strategic analysis project — delivering actionable intelligence on market size, patient demographics, competitive landscape, and growth projections for the product.</p>
+      <p>The project required a rigorous blend of quantitative research, competitive analysis, and strategic forecasting — a demonstration of my ability to navigate complex healthcare marketing challenges with precision and strategic clarity.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt" data-gallery-for="proj_xalatan">
+    <div class="section-label">Research Scope</div>
+    <h2 class="section-title">What the analysis <em>set out to answer.</em></h2>
+    <div class="detail-grid-2">
+      <div>
+        <div class="achievement-list" style="margin-top:0;">
+          <div class="achievement-item">
+            <div class="achievement-icon">1</div>
+            <div class="achievement-text"><strong>Market Overview</strong> — Current market landscape for ophthalmic products in the glaucoma category</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">2</div>
+            <div class="achievement-text"><strong>Patient Population</strong> — Target patient demographics, estimated size, and demand influencers</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">3</div>
+            <div class="achievement-text"><strong>Market Trends</strong> — Emerging technologies, treatment guidelines, and healthcare policy impacts</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="achievement-list" style="margin-top:0;">
+          <div class="achievement-item">
+            <div class="achievement-icon">4a</div>
+            <div class="achievement-text"><strong>Volume Forecast</strong> — Estimated future product volume based on market trajectory</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">4b</div>
+            <div class="achievement-text"><strong>Value Forecast</strong> — Projected future market value and revenue potential</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-icon">4c-d</div>
+            <div class="achievement-text"><strong>Competitive &amp; Statistical Analysis</strong> — Competitor mapping and data-driven statistical breakdown</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section" data-gallery-for="proj_xalatan">
+    <div class="section-label">Analysis Gallery</div>
+    <h2 class="section-title">The research, <em>visualised.</em></h2>
+    <div class="pdf-zone" id="pdf-section-proj_xalatan" style="display:none">
+      <div class="pdf-upload-zone">
+        <p style="font-size:0.8rem;opacity:0.5;margin-bottom:1rem;">Upload a PDF presentation to display it as a slideshow</p>
+        <button class="pdf-upload-btn" onclick="triggerPdfUpload('proj_xalatan')">📄 Upload PDF</button>
+      </div>
+      <div class="pdf-slider-wrap" id="pdf-slider-proj_xalatan">
+        <div class="pdf-track" id="pdf-track-proj_xalatan"></div>
+        <div class="pdf-controls">
+          <button class="pdf-nav" onclick="pdfPrev('proj_xalatan')">←</button>
+          <span class="pdf-counter" id="pdf-counter-proj_xalatan">1 / 1</span>
+          <button class="pdf-nav" onclick="pdfNext('proj_xalatan')">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="proj-gallery">
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/1-1.jpg" alt="Xalatan market overview" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/2-3.jpg" alt="Market research" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/3-1.jpg" alt="Patient demographics" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/4-1.jpg" alt="Market trends" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/5-1.jpg" alt="Volume forecast" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/6-1.jpg" alt="Value forecast" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/7-1.jpg" alt="Competitor analysis" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/8-1.jpg" alt="Statistical analysis" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/9.jpg" alt="Data insights 1" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/02/10.jpg" alt="Data insights 2" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">Unlock powerful insights designed just for you.</div>
+    <div class="detail-cta-sub">From pharmaceutical markets to any sector — I deliver market research and strategic analysis that drives confident business decisions.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Request an Analysis</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#projects')">← Back to Projects</span>
+    </div>
+  </div>
+</div><!-- end page-proj-xalatan -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PROJECT: REDINGTON CAMPAIGN
+═══════════════════════════════════════════════ -->
+<div id="page-proj-redington" class="page">
+  <div class="detail-nav">
+    <span class="back-btn" onclick="showPage('page-home', '#projects')">Back to Projects</span>
+    <a class="detail-nav-logo" onclick="showPage('page-home')">Ankita Tomar</a>
+    <ul class="detail-nav-links">
+      <li><a href="#" onclick="showPage('page-home','#experience'); return false;">Experience</a></li>
+      <li><a href="#" onclick="showPage('page-home','#contact'); return false;">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img" data-img-key="proj_redington" style="background-image: url('https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/1.jpg'), url('https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1600&auto=format&fit=crop');"></div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-tag">Lead Generation Campaign · Retail Tech · Dubai</div>
+      <h1 class="detail-title">Redington<br><em>× Apple Campaign</em></h1>
+      <div class="detail-subtitle">Apple iPhone 15 Series — a full lead generation campaign for Redington Gulf.</div>
+    </div>
+  </div>
+
+  <div class="detail-meta">
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Client</div>
+      <div class="detail-meta-value">Redington Gulf</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Campaign</div>
+      <div class="detail-meta-value">Apple iPhone 15 Launch</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Objective</div>
+      <div class="detail-meta-value">Lead Generation</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Market</div>
+      <div class="detail-meta-value">GCC / Middle East</div>
+    </div>
+    <div class="detail-meta-item">
+      <div class="detail-meta-label">Type</div>
+      <div class="detail-meta-value">Full Campaign Strategy</div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">Campaign Brief</div>
+    <h2 class="section-title">Launching the iPhone 15 Series <em>across the Gulf.</em></h2>
+    <div class="detail-body">
+      <p>Redington Gulf is one of the largest technology distribution companies in the Middle East, and a key distribution partner for Apple across the GCC region. The brief was clear and ambitious: create an Apple iPhone 15 Series launch lead generation campaign that would capture consumer interest, build qualified leads, and drive conversion through the Redington distribution network.</p>
+      <p>This campaign required a deep understanding of both Apple's brand standards and the specific consumer behaviour patterns of GCC markets — combining aspirational product storytelling with culturally resonant targeting and measurable digital performance mechanics.</p>
+    </div>
+  </div>
+
+  <div class="detail-section-alt" data-gallery-for="proj_redington">
+    <div class="section-label">Campaign Gallery</div>
+    <h2 class="section-title">The strategy, <em>brought to life.</em></h2>
+    <div class="pdf-zone" id="pdf-section-proj_redington" style="display:none">
+      <div class="pdf-upload-zone">
+        <p style="font-size:0.8rem;opacity:0.5;margin-bottom:1rem;">Upload a PDF presentation to display it as a slideshow</p>
+        <button class="pdf-upload-btn" onclick="triggerPdfUpload('proj_redington')">📄 Upload PDF</button>
+      </div>
+      <div class="pdf-slider-wrap" id="pdf-slider-proj_redington">
+        <div class="pdf-track" id="pdf-track-proj_redington"></div>
+        <div class="pdf-controls">
+          <button class="pdf-nav" onclick="pdfPrev('proj_redington')">←</button>
+          <span class="pdf-counter" id="pdf-counter-proj_redington">1 / 1</span>
+          <button class="pdf-nav" onclick="pdfNext('proj_redington')">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="proj-gallery">
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/1.jpg" alt="Redington campaign overview" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/2.jpg" alt="Campaign slide 2" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/3.jpg" alt="Campaign slide 3" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/4.jpg" alt="Campaign slide 4" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/5.jpg" alt="Campaign slide 5" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/6.jpg" alt="Campaign slide 6" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/7.jpg" alt="Campaign slide 7" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/8.jpg" alt="Campaign slide 8" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/10.jpg" alt="Campaign slide 9" loading="lazy">
+      </div>
+      <div class="proj-gallery-item">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/11.jpg" alt="Campaign slide 10" loading="lazy">
+      </div>
+      <div class="proj-gallery-item wide">
+        <img onerror="this.closest('.proj-gallery-item').style.display='none'" src="https://portfolioankita.wordpress.com/wp-content/uploads/2025/03/12.jpg" alt="Campaign slide 11" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="section-label">What I Delivered</div>
+    <h2 class="section-title">A campaign strategy <em>built for results.</em></h2>
+    <div class="detail-grid-3">
+      <div class="resp-card reveal">
+        <div class="resp-num">01</div>
+        <div class="resp-title">Campaign Strategy</div>
+        <div class="resp-desc">End-to-end campaign strategy development — defining objectives, KPIs, channel mix, messaging framework, and audience targeting for the iPhone 15 Series launch in the GCC market.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">02</div>
+        <div class="resp-title">Lead Generation Mechanics</div>
+        <div class="resp-desc">Designing the campaign's lead capture architecture — from landing page copy to lead magnet offers and follow-up nurture flows designed to convert initial interest into qualified sales opportunities.</div>
+      </div>
+      <div class="resp-card reveal">
+        <div class="resp-num">03</div>
+        <div class="resp-title">Creative Concepts</div>
+        <div class="resp-desc">Developing campaign creative concepts and messaging that balanced Apple's premium brand identity with the specific aspirational motivations of GCC consumers — localised without losing global brand equity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-cta">
+    <div class="detail-cta-title">Looking for a campaign strategy for your business?</div>
+    <div class="detail-cta-sub">From product launches to full lead generation campaigns — I build strategies that capture attention and convert it into measurable business results.</div>
+    <div class="detail-cta-btns">
+      <a href="mailto:ankita07tomar@gmail.com" class="btn-white">Get In Touch</a>
+      <span class="btn-white-outline" onclick="showPage('page-home','#projects')">← Back to Projects</span>
+    </div>
+  </div>
+</div><!-- end page-proj-redington -->
+
+
+<!-- ── UPLOAD MODE BANNER ── -->
+<div class="upload-mode-banner">
+  <span>✎ Upload Mode — click any image zone to replace · Press <strong>Esc</strong> or click Done when finished</span>
+  <button onclick="toggleUploadMode()">Done</button>
+</div>
+
+<!-- ── CROP MODAL ── -->
+<div id="cropModal">
+  <div class="crop-hint">Drag corners or edges to adjust · Drag inside to move</div>
+  <div class="crop-canvas-wrap">
+    <canvas id="cropCanvas"></canvas>
+    <canvas id="cropOverlay"
+      onmousedown="onCropDown(event)"  onmousemove="onCropMove(event)"
+      onmouseup="onCropUp()"           onmouseleave="onCropUp()"
+      ontouchstart="onCropDown(event)" ontouchmove="onCropMove(event)"
+      ontouchend="onCropUp()"></canvas>
+  </div>
+  <div class="crop-actions">
+    <button class="crop-confirm" onclick="confirmCrop()">✓ Crop &amp; Save</button>
+    <span class="crop-size-label" id="cropSizeLabel"></span>
+    <button class="crop-cancel"  onclick="cancelCrop()">Cancel</button>
+  </div>
+</div>
+
+<!-- ── CONTACT POPUP ── -->
+<div class="popup-overlay" id="contactPopup" onclick="handleOverlayClick(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeContactForm()" aria-label="Close">✕</button>
+    <div id="formContent">
+      <div class="popup-label">Get In Touch</div>
+      <div class="popup-title">Let's <em>create together.</em></div>
+      <form id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="cf-name">Name</label>
+          <input class="form-input" id="cf-name" type="text" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-email">Email</label>
+          <input class="form-input" id="cf-email" type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-service">Service Request</label>
+          <select class="form-select" id="cf-service" required>
+            <option value="" disabled selected>Select a service…</option>
+            <option>Content Writing</option>
+            <option>Graphic Designing</option>
+            <option>Social Media Marketing</option>
+            <option>Website Management</option>
+            <option>Influencer Management</option>
+            <option>Email Marketing</option>
+            <option>Performance Marketing</option>
+            <option>Event Coordination</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-brief">Brief Project Scope</label>
+          <textarea class="form-textarea" id="cf-brief" placeholder="Tell me about your project in a few sentences…" maxlength="900" oninput="updateCharCount(this)"></textarea>
+          <div class="form-char-count" id="charCount">0 / 150 words</div>
+        </div>
+        <button class="form-submit" type="submit" id="submitBtn">Send Message →</button>
+      </form>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-icon">✦</div>
+      <div class="form-success-title">Message sent!</div>
+      <div class="form-success-sub">Thank you for reaching out. I'll get back to you within 24–48 hours.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── silence ALL console noise ── */
+(function(){
+  var noop = function(){};
+  var _cw = console.warn; console.warn = function(){
+    var m = String(arguments[0]||'');
+    if(/fake worker|TT: undefined|GlobalWorkerOptions|Setting up|deprecated/i.test(m)) return;
+    _cw.apply(console, arguments);
+  };
+  window.addEventListener('unhandledrejection', function(e){ e.preventDefault(); });
+})();
+
+/* ══ INDEXEDDB ══ */
+var IDB_NAME='ankita_portfolio', IDB_VER=1, STORE='media', _db=null;
+function openDB(){
+  if(_db) return Promise.resolve(_db);
+  return new Promise(function(res,rej){
+    var r=indexedDB.open(IDB_NAME,IDB_VER);
+    r.onupgradeneeded=function(e){e.target.result.createObjectStore(STORE);};
+    r.onsuccess=function(e){_db=e.target.result;res(_db);};
+    r.onerror=function(e){rej(e);};
+  });
+}
+function idbSave(k,v){return openDB().then(function(db){return new Promise(function(res,rej){var tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(v,k);tx.oncomplete=res;tx.onerror=rej;});});}
+function idbLoad(k){return openDB().then(function(db){return new Promise(function(res){var tx=db.transaction(STORE,'readonly');var r=tx.objectStore(STORE).get(k);r.onsuccess=function(){res(r.result||null);};r.onerror=function(){res(null);};});});}
+function idbAllKeys(){return openDB().then(function(db){return new Promise(function(res){var tx=db.transaction(STORE,'readonly');var r=tx.objectStore(STORE).getAllKeys();r.onsuccess=function(){res(r.result||[]);};r.onerror=function(){res([]);};});});}
+
+/* ══ ROUTER ══ */
+function showPage(id, anchor) {
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  var t = document.getElementById(id);
+  if (!t) return;
+  t.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  if (anchor) setTimeout(function(){
+    var el = document.querySelector(anchor);
+    if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }, 80);
+  setTimeout(initReveal, 120);
+  closeNav();
+}
+
+/* ══ SCROLL REVEAL ══ */
+function initReveal() {
+  var els = document.querySelectorAll('.page.active .reveal:not(.visible)');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry,i){
+      if(entry.isIntersecting){
+        setTimeout(function(){entry.target.classList.add('visible');},i*90);
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.08});
+  els.forEach(function(el){io.observe(el);});
+}
+document.addEventListener('DOMContentLoaded', function(){
+  initReveal();
+  loadSavedImages();
+  loadSavedPdfs();
+  loadGalleryReplacedState();
+});
+
+/* ══ MOBILE NAV ══ */
+function toggleNav() {
+  var links = document.getElementById('navLinks');
+  var ham   = document.getElementById('navHamburger');
+  if (links) links.classList.toggle('mobile-open');
+  if (ham)   ham.classList.toggle('open');
+}
+function closeNav() {
+  var links = document.getElementById('navLinks');
+  var ham   = document.getElementById('navHamburger');
+  if (links) links.classList.remove('mobile-open');
+  if (ham)   ham.classList.remove('open');
+}
+
+/* ══ IMAGE UPLOAD & STORAGE ══ */
+function triggerImageUpload(storageKey) {
+  var input = document.createElement('input');
+  input.type = 'file'; input.accept = 'image/*';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      var dataUrl = ev.target.result;
+      if (storageKey === 'about_portrait') {
+        showCropModal(dataUrl);
+      } else {
+        idbSave('img_'+storageKey, dataUrl).catch(function(){});
+        applyImage(storageKey, dataUrl);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+function applyImage(storageKey, dataUrl) {
+  if (storageKey === 'about_portrait') {
+    var img = document.getElementById('about-portrait-img');
+    var ph  = document.getElementById('about-portrait-ph');
+    if (img) { img.src = dataUrl; img.style.display = 'block'; }
+    if (ph)  ph.style.display = 'none';
+  } else {
+    document.querySelectorAll('[data-img-key="'+storageKey+'"]').forEach(function(el){
+      el.style.backgroundImage = 'url('+dataUrl+')';
+    });
+  }
+}
+
+function loadSavedImages() {
+  idbAllKeys().then(function(keys){
+    keys.forEach(function(key){
+      if (!key.startsWith('img_')) return;
+      idbLoad(key).then(function(dataUrl){
+        if (dataUrl) applyImage(key.replace('img_',''), dataUrl);
+      });
+    });
+  }).catch(function(){});
+}
+
+/* ══ PORTRAIT CROP ══ */
+var _cropImg=null, _cropScale=1, _cropRect={x:0,y:0,w:0,h:0}, _cropDrag=null;
+
+function showCropModal(dataUrl) {
+  var modal = document.getElementById('cropModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  _cropImg = new Image();
+  _cropImg.onload = function(){
+    var canvas=document.getElementById('cropCanvas');
+    var overlay=document.getElementById('cropOverlay');
+    var maxW=Math.min(window.innerWidth*0.84,880);
+    var maxH=Math.min(window.innerHeight*0.66,660);
+    _cropScale=Math.min(maxW/_cropImg.naturalWidth, maxH/_cropImg.naturalHeight, 1);
+    var W=Math.round(_cropImg.naturalWidth*_cropScale);
+    var H=Math.round(_cropImg.naturalHeight*_cropScale);
+    canvas.width=overlay.width=W; canvas.height=overlay.height=H;
+    canvas.getContext('2d').drawImage(_cropImg,0,0,W,H);
+    var pad=Math.min(W,H)*0.06;
+    _cropRect={x:pad,y:pad,w:W-pad*2,h:H-pad*2};
+    _drawCropOverlay();
+  };
+  _cropImg.src = dataUrl;
+}
+
+function _drawCropOverlay() {
+  var overlay=document.getElementById('cropOverlay');
+  if (!overlay) return;
+  var ctx=overlay.getContext('2d');
+  var W=overlay.width,H=overlay.height,r=_cropRect;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='rgba(0,0,0,0.58)'; ctx.fillRect(0,0,W,H);
+  ctx.clearRect(r.x,r.y,r.w,r.h);
+  ctx.strokeStyle='rgba(196,97,74,1)'; ctx.lineWidth=1.5;
+  ctx.strokeRect(r.x+.5,r.y+.5,r.w-1,r.h-1);
+  ctx.strokeStyle='rgba(255,255,255,0.22)'; ctx.lineWidth=0.5;
+  for(var i=1;i<3;i++){
+    ctx.beginPath();ctx.moveTo(r.x+r.w*i/3,r.y);ctx.lineTo(r.x+r.w*i/3,r.y+r.h);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(r.x,r.y+r.h*i/3);ctx.lineTo(r.x+r.w,r.y+r.h*i/3);ctx.stroke();
+  }
+  var hs=8; ctx.fillStyle='#C4614A';
+  [[r.x,r.y],[r.x+r.w,r.y],[r.x,r.y+r.h],[r.x+r.w,r.y+r.h]].forEach(function(p){ctx.fillRect(p[0]-hs/2,p[1]-hs/2,hs,hs);});
+  var lbl=document.getElementById('cropSizeLabel');
+  if(lbl) lbl.textContent=Math.round(r.w/_cropScale)+' × '+Math.round(r.h/_cropScale)+' px';
+}
+
+function _cropPos(e) {
+  var rect=document.getElementById('cropOverlay').getBoundingClientRect();
+  var src=e.touches?e.touches[0]:e;
+  return {mx:src.clientX-rect.left, my:src.clientY-rect.top};
+}
+function _getHandle(mx,my) {
+  var r=_cropRect,hs=14;
+  var corners=[['tl',r.x,r.y],['tr',r.x+r.w,r.y],['bl',r.x,r.y+r.h],['br',r.x+r.w,r.y+r.h]];
+  for(var i=0;i<corners.length;i++){if(Math.abs(mx-corners[i][1])<hs&&Math.abs(my-corners[i][2])<hs)return corners[i][0];}
+  if(mx>=r.x&&mx<=r.x+r.w&&my>=r.y&&my<=r.y+r.h)return 'move';
+  return 'new';
+}
+function onCropDown(e){if(e.cancelable)e.preventDefault();var p=_cropPos(e);_cropDrag={type:_getHandle(p.mx,p.my),startX:p.mx,startY:p.my,orig:Object.assign({},_cropRect)};}
+function onCropMove(e){
+  if(!_cropDrag)return;if(e.cancelable)e.preventDefault();
+  var overlay=document.getElementById('cropOverlay'),W=overlay.width,H=overlay.height;
+  var p=_cropPos(e),dx=p.mx-_cropDrag.startX,dy=p.my-_cropDrag.startY,o=_cropDrag.orig,mn=30;
+  var cl=function(v,lo,hi){return Math.max(lo,Math.min(hi,v));};
+  var t=_cropDrag.type;
+  if(t==='new'){var x=cl(Math.min(_cropDrag.startX,p.mx),0,W),y=cl(Math.min(_cropDrag.startY,p.my),0,H);_cropRect={x:x,y:y,w:cl(Math.abs(p.mx-_cropDrag.startX),mn,W-x),h:cl(Math.abs(p.my-_cropDrag.startY),mn,H-y)};}
+  else if(t==='move'){_cropRect={x:cl(o.x+dx,0,W-o.w),y:cl(o.y+dy,0,H-o.h),w:o.w,h:o.h};}
+  else if(t==='tl'){var nx=cl(o.x+dx,0,o.x+o.w-mn),ny=cl(o.y+dy,0,o.y+o.h-mn);_cropRect={x:nx,y:ny,w:o.x+o.w-nx,h:o.y+o.h-ny};}
+  else if(t==='tr'){var ny2=cl(o.y+dy,0,o.y+o.h-mn);_cropRect={x:o.x,y:ny2,w:cl(o.w+dx,mn,W-o.x),h:o.y+o.h-ny2};}
+  else if(t==='bl'){var nx2=cl(o.x+dx,0,o.x+o.w-mn);_cropRect={x:nx2,y:o.y,w:o.x+o.w-nx2,h:cl(o.h+dy,mn,H-o.y)};}
+  else if(t==='br'){_cropRect={x:o.x,y:o.y,w:cl(o.w+dx,mn,W-o.x),h:cl(o.h+dy,mn,H-o.y)};}
+  _drawCropOverlay();
+  var cur={tl:'nw-resize',tr:'ne-resize',bl:'sw-resize',br:'se-resize',move:'move',new:'crosshair'};
+  overlay.style.cursor=cur[_getHandle(p.mx,p.my)]||'crosshair';
+}
+function onCropUp(){_cropDrag=null;}
+function confirmCrop() {
+  var r=_cropRect,sx=r.x/_cropScale,sy=r.y/_cropScale,sw=r.w/_cropScale,sh=r.h/_cropScale;
+  var out=document.createElement('canvas');out.width=Math.round(sw);out.height=Math.round(sh);
+  out.getContext('2d').drawImage(_cropImg,sx,sy,sw,sh,0,0,sw,sh);
+  var dataUrl=out.toDataURL('image/jpeg',0.93);
+  idbSave('img_about_portrait',dataUrl).catch(function(){});
+  applyImage('about_portrait',dataUrl);
+  cancelCrop();
+}
+function cancelCrop(){var m=document.getElementById('cropModal');if(m)m.style.display='none';_cropImg=null;_cropDrag=null;}
+document.addEventListener('keydown',function(e){
+  var m=document.getElementById('cropModal');
+  if(m&&m.style.display==='flex'){if(e.key==='Enter')confirmCrop();if(e.key==='Escape')cancelCrop();}
+  else if(e.key==='Escape'){closeContactForm();closeNav();}
+});
+
+/* ══ PDF SLIDESHOW ══ */
+var pdfState={};
+function loadPdfJs(){
+  if(window.pdfjsLib)return Promise.resolve();
+  var _cw2=console.warn;
+  console.warn=function(){var m=String(arguments[0]||'');if(/fake worker|TT:|GlobalWorkerOptions|Setting up/i.test(m))return;_cw2.apply(console,arguments);};
+  return new Promise(function(res,rej){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    s.onload=function(){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';res();};
+    s.onerror=rej;
+    document.head.appendChild(s);
+  });
+}
+
+async function renderPdf(pdfId, dataUrl) {
+  try {
+    await loadPdfJs();
+    var arr=dataUrl.split(',')[1],bin=atob(arr),bytes=new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+    var pdf=await pdfjsLib.getDocument({data:bytes}).promise;
+    var total=pdf.numPages;
+    pdfState[pdfId]={currentPage:1,totalPages:total};
+    var track=document.getElementById('pdf-track-'+pdfId);
+    if(!track)return;
+    track.innerHTML='';
+    for(var p=1;p<=total;p++){
+      var page=await pdf.getPage(p);
+      var vp=page.getViewport({scale:1.6});
+      var div=document.createElement('div');
+      div.className='pdf-page'+(p===1?' active':'');
+      div.dataset.page=p;
+      var canvas=document.createElement('canvas');
+      canvas.width=vp.width;canvas.height=vp.height;
+      canvas.style.cssText='width:100%;height:auto;display:block;';
+      await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
+      div.appendChild(canvas);track.appendChild(div);
+    }
+    var sec=document.getElementById('pdf-section-'+pdfId);
+    if(sec)sec.style.display='';
+    var sliderEl=document.getElementById('pdf-slider-'+pdfId);
+    if(sliderEl)sliderEl.style.display='block';
+    updatePdfCounter(pdfId);
+    // Hide gallery sections for this project
+    hideGalleryFor(pdfId);
+  } catch(err){}
+}
+
+function pdfPrev(pdfId){var s=pdfState[pdfId];if(s&&s.currentPage>1)goToPdfPage(pdfId,s.currentPage-1);}
+function pdfNext(pdfId){var s=pdfState[pdfId];if(s&&s.currentPage<s.totalPages)goToPdfPage(pdfId,s.currentPage+1);}
+function goToPdfPage(pdfId,page){
+  var track=document.getElementById('pdf-track-'+pdfId);
+  if(!track||!pdfState[pdfId])return;
+  track.querySelectorAll('.pdf-page').forEach(function(el){el.classList.toggle('active',parseInt(el.dataset.page)===page);});
+  pdfState[pdfId].currentPage=page;
+  updatePdfCounter(pdfId);
+}
+function updatePdfCounter(pdfId){var s=pdfState[pdfId],el=document.getElementById('pdf-counter-'+pdfId);if(el&&s)el.textContent=s.currentPage+' / '+s.totalPages;}
+
+async function triggerPdfUpload(pdfId) {
+  var input = document.createElement('input');
+  input.type = 'file'; input.accept = 'application/pdf';
+  input.onchange = async function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var track = document.getElementById('pdf-track-' + pdfId);
+    if (track) track.innerHTML = '<div class="pdf-loading"><div class="pdf-spinner"></div>Rendering pages…</div>';
+    var sec = document.getElementById('pdf-section-' + pdfId);
+    if (sec) sec.style.display = '';
+    var slider = document.getElementById('pdf-slider-' + pdfId);
+    if (slider) slider.style.display = 'block';
+    var reader = new FileReader();
+    reader.onload = async function(ev) {
+      var dataUrl = ev.target.result;
+      try { await idbSave('pdf_' + pdfId, dataUrl); } catch(e2) {}
+      await renderPdf(pdfId, dataUrl);
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+function hideGalleryFor(pdfId) {
+  // Mark gallery sections for this project as replaced
+  document.querySelectorAll('[data-gallery-for="'+pdfId+'"]').forEach(function(el){
+    el.classList.add('gallery-replaced');
+  });
+  // Save the replacement state
+  try { idbSave('gallery_replaced_'+pdfId, '1').catch(function(){}); } catch(e){}
+}
+
+async function loadGalleryReplacedState() {
+  var ids=['proj_formula','proj_slay','proj_gaffitee','proj_purple','proj_xalatan','proj_redington'];
+  for(var i=0;i<ids.length;i++){
+    try {
+      var val = await idbLoad('gallery_replaced_'+ids[i]);
+      if(val) {
+        document.querySelectorAll('[data-gallery-for="'+ids[i]+'"]').forEach(function(el){
+          el.classList.add('gallery-replaced');
+        });
+      }
+    } catch(e){}
+  }
+}
+
+async function loadSavedPdfs() {
+  var ids=['proj_formula','proj_slay','proj_gaffitee','proj_purple','proj_xalatan','proj_redington'];
+  for(var i=0;i<ids.length;i++){
+    var id=ids[i];
+    if(!document.getElementById('pdf-section-'+id))continue;
+    try{var saved=await idbLoad('pdf_'+id);if(saved)await renderPdf(id,saved);}catch(e){}
+  }
+}
+
+/* ══ CONTACT POPUP ══ */
+function openContactForm(){document.getElementById('contactPopup').classList.add('open');document.body.style.overflow='hidden';}
+function closeContactForm(){document.getElementById('contactPopup').classList.remove('open');document.body.style.overflow='';}
+function handleOverlayClick(e){if(e.target===document.getElementById('contactPopup'))closeContactForm();}
+function updateCharCount(el){
+  var words=el.value.trim()?el.value.trim().split(/\s+/).length:0;
+  var c=document.getElementById('charCount');
+  c.textContent=words+' / 150 words';
+  c.classList.toggle('over',words>150);
+  document.getElementById('submitBtn').disabled=words>150;
+}
+function handleFormSubmit(e){
+  e.preventDefault();
+  var name=document.getElementById('cf-name').value.trim();
+  var email=document.getElementById('cf-email').value.trim();
+  var service=document.getElementById('cf-service').value;
+  var brief=document.getElementById('cf-brief').value.trim();
+  var subj=encodeURIComponent('Portfolio Enquiry \u2014 '+service);
+  var body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\nService Request: '+service+'\n\nProject Brief:\n'+brief);
+  window.location.href='mailto:ankita07tomar@gmail.com?subject='+subj+'&body='+body;
+  setTimeout(function(){
+    document.getElementById('formContent').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+    document.getElementById('contactForm').reset();
+    document.getElementById('charCount').textContent='0 / 150 words';
+    setTimeout(closeContactForm,3200);
+    setTimeout(function(){document.getElementById('formContent').style.display='block';document.getElementById('formSuccess').style.display='none';},3500);
+  },400);
+}
+
+/* ══ SAVE FILE (bakes all images into the HTML) ══ */
+async function saveFile() {
+  var lbl = document.getElementById('saveFileLink');
+  if (lbl) lbl.textContent = 'Saving…';
+
+  try {
+    // Re-apply all saved images to DOM so inline styles are current
+    await loadSavedImages();
+
+    // Temporarily convert PDF canvases to img so outerHTML captures them
+    var swaps = [];
+    document.querySelectorAll('.pdf-page canvas').forEach(function(canvas){
+      try {
+        var img = document.createElement('img');
+        img.src = canvas.toDataURL('image/jpeg', 0.88);
+        img.style.cssText = 'width:100%;height:auto;display:block;';
+        canvas.parentNode.insertBefore(img, canvas);
+        canvas.parentNode.removeChild(canvas);
+        swaps.push({img:img, canvas:canvas});
+      } catch(e){}
+    });
+
+    // Capture the full page — images are now embedded in inline styles
+    var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    // Restore DOM
+    swaps.forEach(function(s){
+      s.img.parentNode.insertBefore(s.canvas, s.img);
+      s.img.parentNode.removeChild(s.img);
+    });
+
+    // Remove any PDF.js CDN script tags injected into <head>
+    html = html.replace(/<script[^>]+cdnjs\.cloudflare\.com[^>]*><\/script>\s*/gi, '');
+
+    // Download
+    var blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href = url; a.download = 'ankita-tomar-portfolio.html';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    if (lbl) { lbl.textContent = '✓ Saved!'; setTimeout(function(){ lbl.textContent = 'Save File'; }, 2500); }
+  } catch(e) {
+    if (lbl) lbl.textContent = 'Save File';
+  }
+}
+/* ══ SECRET UPLOAD MODE ══ */
+/* Activate: type  u p l o a d  anywhere on the page */
+(function(){
+  var seq = [], target = ['u','p','l','o','a','d'];
+  document.addEventListener('keydown', function(e){
+    // Also exit on Escape
+    if (e.key === 'Escape' && document.body.classList.contains('upload-mode')) {
+      toggleUploadMode(); return;
+    }
+    seq.push(e.key.toLowerCase());
+    if (seq.length > target.length) seq.shift();
+    if (seq.join('') === target.join('')) toggleUploadMode();
+  });
+})();
+
+function toggleUploadMode() {
+  document.body.classList.toggle('upload-mode');
+}
+
+function handleUploadClick(e, storageKey) {
+  if (!document.body.classList.contains('upload-mode')) return;
+  if (e && e.stopPropagation) e.stopPropagation();
+  if (e && e.preventDefault) e.preventDefault();
+  // Create file input inline — must stay in same synchronous call as user gesture
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.style.cssText = 'position:fixed;top:-9999px;opacity:0;';
+  document.body.appendChild(input);
+  input.onchange = function(ev) {
+    var file = ev.target.files[0];
+    document.body.removeChild(input);
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(re) {
+      var dataUrl = re.target.result;
+      if (storageKey === 'about_portrait') {
+        showCropModal(dataUrl);
+      } else {
+        idbSave('img_' + storageKey, dataUrl).catch(function(){});
+        applyImage(storageKey, dataUrl);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+</script>
+</body>
+</html>
